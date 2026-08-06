@@ -1285,6 +1285,13 @@ footer {
         max-width: 320px;
         height: 400px;
         margin: 1.5rem auto 0 auto;
+        animation: mobileFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes mobileFloat {
+        0% { transform: translateY(0); filter: drop-shadow(0 0 0 transparent); }
+        50% { transform: translateY(-12px); filter: drop-shadow(0 15px 20px var(--color-accent-gold-glow)); }
+        100% { transform: translateY(0); filter: drop-shadow(0 0 0 transparent); }
     }
 
     .about-wrapper {
