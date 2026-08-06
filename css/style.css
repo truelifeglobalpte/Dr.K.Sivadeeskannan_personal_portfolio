@@ -45,24 +45,24 @@
 }
 
 [data-theme="light"] {
-    /* OPTIONAL LIGHT THEME ALT (Normal Mood) */
-    --color-bg-deep: #f8fafc;
-    --color-bg-card: rgba(255, 255, 255, 0.9);
+    /* PREMIUM LIGHT THEME (Soft Azure & White Pearl) */
+    --color-bg-deep: #f4f7fb;
+    --color-bg-card: #ffffff;
     --color-bg-card-hover: #ffffff;
-    --color-bg-nav: rgba(248, 250, 252, 0.9);
+    --color-bg-nav: rgba(244, 247, 251, 0.92);
     --color-primary: #0f172a;
-    --color-accent-gold: #2563eb;
-    --color-accent-gold-glow: rgba(37, 99, 235, 0.2);
-    --color-accent-indigo: #0284c7;
-    --color-accent-indigo-glow: rgba(2, 132, 199, 0.25);
-    --color-text-white: #0f172a;
-    --color-text-body: #334155;
-    --color-text-muted: #64748b;
-    --glass-border: rgba(203, 213, 225, 0.8);
-    --glass-border-hover: rgba(37, 99, 235, 0.4);
-    --card-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.06);
+    --color-accent-gold: #0284c7;
+    --color-accent-gold-glow: rgba(2, 132, 199, 0.15);
+    --color-accent-indigo: #2563eb;
+    --color-accent-indigo-glow: rgba(37, 99, 235, 0.2);
+    --color-text-white: #0f172a;         /* Dark navy for headings */
+    --color-text-body: #334155;          /* Charcoal slate body text */
+    --color-text-muted: #475569;         /* Subtitle slate */
+    --glass-border: rgba(203, 213, 225, 0.7);
+    --glass-border-hover: rgba(37, 99, 235, 0.45);
+    --card-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.07);
     --card-glow-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.15);
-    --color-hero-span-gradient: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #0284c7 100%);
+    --color-hero-span-gradient: linear-gradient(135deg, #1e40af 0%, #2563eb 60%, #0284c7 100%);
     --color-title-span-gradient: linear-gradient(135deg, #1d4ed8 0%, #0284c7 100%);
 }
 
@@ -111,6 +111,14 @@ body {
     overflow: hidden;
 }
 
+[data-theme="light"] .grid-3d-bg {
+    background-image: 
+        radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(2, 132, 199, 0.06) 0%, transparent 40%),
+        linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+}
+
 #particle-canvas {
     position: absolute;
     top: 0;
@@ -123,7 +131,7 @@ body {
 
 /* Container & Sections */
 section {
-    padding: 7rem 2rem;
+    padding: 4rem 2rem;
     max-width: 1240px;
     margin: 0 auto;
     position: relative;
@@ -306,11 +314,11 @@ header.scrolled {
    HERO SECTION
    ========================================================================== */
 #home {
-    min-height: 100vh;
+    min-height: auto;
     display: flex;
     align-items: center;
-    padding-top: 8rem;
-    padding-bottom: 5rem;
+    padding-top: 6rem;
+    padding-bottom: 3rem;
 }
 
 .hero-wrapper {
@@ -1137,7 +1145,7 @@ header.scrolled {
 .form-group textarea {
     width: 100%;
     padding: 0.85rem 1.1rem;
-    background: rgba(7, 8, 10, 0.7);
+    background: var(--color-bg-deep);
     border: 1px solid var(--glass-border);
     border-radius: 10px;
     color: var(--color-text-white);
@@ -1358,7 +1366,7 @@ footer {
 
 @media (max-width: 768px) {
     section {
-        padding: 4.5rem 1.25rem;
+        padding: 2.5rem 1.25rem;
     }
 
     .hero-name {
@@ -1452,7 +1460,7 @@ footer {
 
 @media (max-width: 480px) {
     section {
-        padding: 3.75rem 1rem;
+        padding: 2rem 1rem;
     }
 
     .hero-name {

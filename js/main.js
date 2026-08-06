@@ -4,14 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     
-    // Dark Mode Primary (Linear/Vercel Obsidian Aesthetic)
+    // Light Theme Primary default
     let savedTheme = localStorage.getItem('portfolio-theme');
-    if (savedTheme !== 'light') {
-        savedTheme = 'dark';
-        localStorage.setItem('portfolio-theme', 'dark');
+    if (savedTheme === 'dark') {
         document.documentElement.removeAttribute('data-theme');
         if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
     } else {
+        localStorage.setItem('portfolio-theme', 'light');
         document.documentElement.setAttribute('data-theme', 'light');
         if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
     }
