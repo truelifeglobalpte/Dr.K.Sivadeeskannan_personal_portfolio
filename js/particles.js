@@ -25,18 +25,20 @@ class ParticleSystem {
 
     createParticles() {
         this.particles = [];
-        const density = window.innerWidth < 768 ? 45 : 90;
+        const isMobile = window.innerWidth < 768;
+        const density = isMobile ? 28 : 90;
+        this.connectionDistance = isMobile ? 100 : 180;
         
         for (let i = 0; i < density; i++) {
             this.particles.push({
                 x: Math.random() * this.width,
                 y: Math.random() * this.height,
-                vx: (Math.random() - 0.5) * 0.7,
-                vy: (Math.random() - 0.5) * 0.7,
-                radius: Math.random() * 2.5 + 1.5,
+                vx: (Math.random() - 0.5) * (isMobile ? 0.5 : 0.7),
+                vy: (Math.random() - 0.5) * (isMobile ? 0.5 : 0.7),
+                radius: isMobile ? (Math.random() * 1.5 + 1) : (Math.random() * 2.5 + 1.5),
                 // Store both theme colors
                 colorDark: Math.random() > 0.3 ? 'rgba(217, 119, 6, 0.75)' : 'rgba(16, 185, 129, 0.75)',
-                colorLight: Math.random() > 0.3 ? 'rgba(70, 70, 70, 0.7)' : 'rgba(120, 120, 120, 0.7)'
+                colorLight: Math.random() > 0.3 ? 'rgba(80, 80, 80, 0.6)' : 'rgba(120, 120, 120, 0.6)'
             });
         }
     }
@@ -56,10 +58,24 @@ class ParticleSystem {
             this.mouse.x = null;
             this.mouse.y = null;
         });
+
+        // Touch support for mobile interaction
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                this.mouse.x = e.touches[0].clientX;
+                this.mouse.y = e.touches[0].clientY;
+            }
+        });
+
+        window.addEventListener('touchend', () => {
+            this.mouse.x = null;
+            this.mouse.y = null;
+        });
     }
 
     animate() {
         this.ctx.clearRect(0, 0, this.width, this.height);
+        const isMobile = window.innerWidth < 768;
 
         for (let i = 0; i < this.particles.length; i++) {
             const p = this.particles[i];
@@ -72,7 +88,7 @@ class ParticleSystem {
             if (p.x < 0 || p.x > this.width) p.vx *= -1;
             if (p.y < 0 || p.y > this.height) p.vy *= -1;
 
-            // Mouse interaction (repel effect)
+            // Touch / Mouse interaction
             if (this.mouse.x !== null) {
                 const dx = p.x - this.mouse.x;
                 const dy = p.y - this.mouse.y;
@@ -94,10 +110,9 @@ class ParticleSystem {
             this.ctx.beginPath();
             this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
             this.ctx.fillStyle = currentColor;
-            this.ctx.shadowBlur = 4;
+            this.ctx.shadowBlur = isMobile ? 0 : 4;
             this.ctx.shadowColor = currentColor;
             this.ctx.fill();
-            this.ctx.shadowBlur = 0; // Reset shadow
 
             // Connect close particles
             for (let j = i + 1; j < this.particles.length; j++) {
@@ -107,13 +122,14 @@ class ParticleSystem {
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
                 if (dist < this.connectionDistance) {
-                    const alpha = (1 - dist / this.connectionDistance) * 0.4;
+                    const maxAlpha = isMobile ? 0.22 : 0.4;
+                    const alpha = (1 - dist / this.connectionDistance) * maxAlpha;
                     this.ctx.beginPath();
                     this.ctx.moveTo(p.x, p.y);
                     this.ctx.lineTo(p2.x, p2.y);
-                    const lineRGB = isDark ? '217, 119, 6' : '150, 150, 150'; // Gold in dark mode, light grey in light mode
+                    const lineRGB = isDark ? '217, 119, 6' : '160, 160, 160';
                     this.ctx.strokeStyle = `rgba(${lineRGB}, ${alpha})`;
-                    this.ctx.lineWidth = 0.9;
+                    this.ctx.lineWidth = isMobile ? 0.7 : 0.9;
                     this.ctx.stroke();
                 }
             }
