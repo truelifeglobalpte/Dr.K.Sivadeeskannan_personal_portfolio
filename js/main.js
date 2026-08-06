@@ -61,6 +61,67 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('Lenis smooth scroll failed to initialize:', e);
     }
 
+    // 1.5 Custom Cursor & Magnetic Buttons
+    const cursorDot = document.querySelector('[data-cursor-dot]');
+    const cursorOutline = document.querySelector('[data-cursor-outline]');
+    
+    if (cursorDot && cursorOutline && window.innerWidth > 768) {
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot follows exactly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Outline follows with slight delay using GSAP if available, else standard
+            if (typeof gsap !== 'undefined') {
+                gsap.to(cursorOutline, {
+                    x: posX - window.innerWidth / 2, // Account for translate(-50%, -50%) relative positioning in GSAP 3
+                    y: posY - window.innerHeight / 2,
+                    left: "50%",
+                    top: "50%",
+                    duration: 0.15,
+                    ease: "power2.out"
+                });
+            }
+        });
+
+        // Add magnetic pull and hover states to links/buttons
+        const interactives = document.querySelectorAll('a, button, .pillar-card, .biz-card, .practice-card');
+        interactives.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-hover');
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(el, { x: 0, y: 0, duration: 0.3, ease: 'power2.out' });
+                }
+            });
+
+            // Magnetic Button effect for primary buttons
+            if (el.classList.contains('btn') || el.classList.contains('social-btn')) {
+                el.addEventListener('mousemove', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    const h = rect.width / 2;
+                    const v = rect.height / 2;
+                    const x = e.clientX - rect.left - h;
+                    const y = e.clientY - rect.top - v;
+                    
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(el, {
+                            x: x * 0.3,
+                            y: y * 0.3,
+                            duration: 0.2,
+                            ease: 'power2.out'
+                        });
+                    }
+                });
+            }
+        });
+    }
+
     // 2. Mobile Navigation Toggle
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.getElementById('nav-links');
@@ -163,7 +224,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Scroll Reveal Animations (runs independently of GSAP)
+    // 4. Advanced GSAP Text Reveals (Trending Effect)
+    if (typeof gsap !== 'undefined') {
+        const splitTextIntoWords = (element) => {
+            const text = element.innerText;
+            if(!text.trim()) return;
+            element.innerHTML = '';
+            const words = text.split(' ');
+            words.forEach((word, index) => {
+                const outerSpan = document.createElement('span');
+                outerSpan.style.display = 'inline-block';
+                outerSpan.style.overflow = 'hidden';
+                outerSpan.style.verticalAlign = 'top';
+                
+                const innerSpan = document.createElement('span');
+                innerSpan.style.display = 'inline-block';
+                // preserve spacing
+                innerSpan.innerHTML = word + (index < words.length - 1 ? '&nbsp;' : '');
+                
+                outerSpan.appendChild(innerSpan);
+                element.appendChild(outerSpan);
+            });
+            return element.querySelectorAll('span > span');
+        };
+
+        // Animate section titles and hero text
+        const headingsToAnimate = document.querySelectorAll('.section-title, .hero-name');
+        headingsToAnimate.forEach(heading => {
+            const wordElements = splitTextIntoWords(heading);
+            if (wordElements) {
+                gsap.from(wordElements, {
+                    scrollTrigger: {
+                        trigger: heading,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none'
+                    },
+                    y: '120%',
+                    rotateZ: 3,
+                    opacity: 0,
+                    duration: 0.9,
+                    ease: 'power4.out',
+                    stagger: 0.05
+                });
+            }
+        });
+    }
+
+    // Observe all animate-on-scroll elements with original staggered logic
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -181,23 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.05 });
 
-    // Observe all animate-on-scroll elements
     document.querySelectorAll('.animate-on-scroll').forEach(el => {
         revealObserver.observe(el);
-    });
-
-    // Observe section titles
-    const titleObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                titleObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.05 });
-
-    document.querySelectorAll('.section-title').forEach(el => {
-        titleObserver.observe(el);
     });
 
     // 4. Lightbox/Gallery Viewer
