@@ -7,33 +7,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root {
-    /* DARK MODE PRIMARY (Linear / Vercel Obsidian Aesthetic) */
-    --color-bg-deep: #07080a;           /* Obsidian near-black background */
-    --color-bg-card: rgba(17, 19, 26, 0.75); /* Dark glass card background */
-    --color-bg-card-hover: rgba(24, 27, 38, 0.9);
-    --color-bg-nav: rgba(7, 8, 10, 0.82);
-    --color-primary: #07080a;
+    /* DEFAULT ULTRA-PREMIUM LIGHT THEME */
+    --color-bg-deep: #f8fafc;            /* Clean ambient background */
+    --color-bg-card: #ffffff;            /* Pure white elevated cards */
+    --color-bg-card-hover: #ffffff;
+    --color-bg-nav: rgba(255, 255, 255, 0.88);
+    --color-primary: #0f172a;
     
-    /* CONFIDENT ACCENT COLOR: Electric Sapphire Blue & Sky Azure Glow */
-    --color-accent-gold: #38bdf8;        /* Sapphire Sky Azure Highlight */
-    --color-accent-gold-glow: rgba(56, 189, 248, 0.2);
-    --color-accent-indigo: #2563eb;      /* Vivid Electric Royal Blue */
-    --color-accent-indigo-glow: rgba(37, 99, 235, 0.35);
+    /* VIVID ACCENT COLOR PALETTE */
+    --color-accent-gold: #0284c7;        /* Deep Sky Azure */
+    --color-accent-gold-glow: rgba(2, 132, 199, 0.15);
+    --color-accent-indigo: #2563eb;      /* Royal Sapphire Blue */
+    --color-accent-indigo-glow: rgba(37, 99, 235, 0.2);
     
-    /* TYPOGRAPHY COLORS */
-    --color-text-white: #ffffff;         /* Pure crisp white for headings */
-    --color-text-body: #94a3b8;          /* High contrast muted slate */
-    --color-text-muted: #64748b;         /* Muted caption slate */
+    /* HIGH LEGIBILITY TYPOGRAPHY */
+    --color-text-white: #0f172a;         /* Deep Midnight Navy for headings */
+    --color-text-body: #334155;          /* Crisp Charcoal body text */
+    --color-text-muted: #64748b;         /* Slate caption text */
     
-    /* BORDERS & SHADOWS */
-    --glass-border: rgba(255, 255, 255, 0.08); /* Minimal 1px border */
-    --glass-border-hover: rgba(56, 189, 248, 0.45);
-    --card-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    --card-glow-shadow: 0 20px 50px -10px rgba(37, 99, 235, 0.25), 0 0 30px rgba(56, 189, 248, 0.15);
+    /* ELEVATED SHADOWS & BORDERS */
+    --glass-border: rgba(226, 232, 240, 0.9);
+    --glass-border-hover: rgba(37, 99, 235, 0.5);
+    --card-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+    --card-glow-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.18), 0 0 20px rgba(2, 132, 199, 0.1);
 
     /* TYPOGRAPHY GRADIENTS */
-    --color-hero-span-gradient: linear-gradient(135deg, #ffffff 30%, #60a5fa 70%, #38bdf8 100%);
-    --color-title-span-gradient: linear-gradient(135deg, #60a5fa 0%, #38bdf8 100%);
+    --color-hero-span-gradient: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #0284c7 100%);
+    --color-title-span-gradient: linear-gradient(135deg, #1d4ed8 0%, #0284c7 100%);
 
     /* TYPOGRAPHY PAIRING */
     --font-heading: "Space Grotesk", -apple-system, sans-serif;
@@ -44,26 +44,26 @@
     --transition-fast: all 0.2s ease-out;
 }
 
-[data-theme="light"] {
-    /* PREMIUM LIGHT THEME (Soft Azure & White Pearl) */
-    --color-bg-deep: #f4f7fb;
-    --color-bg-card: #ffffff;
-    --color-bg-card-hover: #ffffff;
-    --color-bg-nav: rgba(244, 247, 251, 0.92);
-    --color-primary: #0f172a;
-    --color-accent-gold: #0284c7;
-    --color-accent-gold-glow: rgba(2, 132, 199, 0.15);
+[data-theme="dark"] {
+    /* NIGHT MODE (Obsidian Dark Theme) */
+    --color-bg-deep: #07080a;
+    --color-bg-card: rgba(17, 19, 26, 0.85);
+    --color-bg-card-hover: rgba(24, 27, 38, 0.95);
+    --color-bg-nav: rgba(7, 8, 10, 0.88);
+    --color-primary: #07080a;
+    --color-accent-gold: #38bdf8;
+    --color-accent-gold-glow: rgba(56, 189, 248, 0.2);
     --color-accent-indigo: #2563eb;
-    --color-accent-indigo-glow: rgba(37, 99, 235, 0.2);
-    --color-text-white: #0f172a;         /* Dark navy for headings */
-    --color-text-body: #334155;          /* Charcoal slate body text */
-    --color-text-muted: #475569;         /* Subtitle slate */
-    --glass-border: rgba(203, 213, 225, 0.7);
-    --glass-border-hover: rgba(37, 99, 235, 0.45);
-    --card-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.07);
-    --card-glow-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.15);
-    --color-hero-span-gradient: linear-gradient(135deg, #1e40af 0%, #2563eb 60%, #0284c7 100%);
-    --color-title-span-gradient: linear-gradient(135deg, #1d4ed8 0%, #0284c7 100%);
+    --color-accent-indigo-glow: rgba(37, 99, 235, 0.35);
+    --color-text-white: #ffffff;
+    --color-text-body: #94a3b8;
+    --color-text-muted: #64748b;
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-border-hover: rgba(56, 189, 248, 0.45);
+    --card-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+    --card-glow-shadow: 0 20px 50px -10px rgba(37, 99, 235, 0.25);
+    --color-hero-span-gradient: linear-gradient(135deg, #ffffff 30%, #60a5fa 70%, #38bdf8 100%);
+    --color-title-span-gradient: linear-gradient(135deg, #60a5fa 0%, #38bdf8 100%);
 }
 
 /* ==========================================================================
