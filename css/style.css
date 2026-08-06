@@ -1166,6 +1166,9 @@ footer {
     .biz-logo-placeholder {
         margin: 0 auto;
         max-width: 320px;
+        font-size: 1.5rem; /* Reduced from 2.2rem */
+        padding: 1rem 1.5rem; /* Reduced from 1.5rem 3rem */
+        flex-direction: column; /* Stack words nicely if they need to */
     }
 }
 
@@ -1243,7 +1246,7 @@ footer {
     }
 
     .hero-name {
-        font-size: 2.3rem;
+        font-size: 1.8rem; /* Reduced from 2.3rem to prevent overflow */
         line-height: 1.2;
         margin-bottom: 1rem;
         word-break: break-word;
@@ -1260,7 +1263,7 @@ footer {
     }
 
     .hero-description {
-        font-size: 0.95rem;
+        font-size: 1.05rem; /* Increased from 0.95rem */
         margin-bottom: 1.8rem;
     }
 
@@ -1294,7 +1297,7 @@ footer {
     }
 
     .about-bio {
-        font-size: 0.95rem;
+        font-size: 1.05rem; /* Increased from 0.95rem */
         margin-bottom: 1.5rem;
     }
 
@@ -1408,7 +1411,7 @@ footer {
 
 @media (max-width: 480px) {
     .hero-name {
-        font-size: 1.85rem;
+        font-size: 1.6rem; /* Reduced from 1.85rem */
     }
 
     .hero-tagline {
