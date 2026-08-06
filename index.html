@@ -27,10 +27,6 @@
 
 <body>
 
-    <!-- Grid 3D Background with Particles -->
-    <div class="grid-3d-bg">
-        <canvas id="particle-canvas"></canvas>
-    </div>
 
     <!-- Header / Navigation -->
     <header>
@@ -52,8 +48,15 @@
                 <li><a href="#social">Social Service</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li>
-                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark/Light Mode">
-                        <i data-lucide="moon" id="theme-icon"></i>
+                    <button class="lamp-theme-toggle" id="theme-toggle" aria-label="Toggle Night/Day Mode">
+                        <div class="lamp-fixture"></div>
+                        <div class="lamp-bulb-body">
+                            <i data-lucide="lightbulb" id="theme-icon"></i>
+                        </div>
+                        <div class="lamp-pull-cord" id="lamp-cord">
+                            <div class="cord-line"></div>
+                            <div class="cord-handle"></div>
+                        </div>
                     </button>
                 </li>
             </ul>
@@ -62,11 +65,16 @@
 
     <!-- Hero Section -->
     <section id="home">
+        <!-- Grid 3D Background with Particles (Only on first page) -->
+        <div class="grid-3d-bg">
+            <canvas id="particle-canvas"></canvas>
+        </div>
+
         <div class="hero-wrapper">
             <div class="hero-content">
                 <span class="hero-badge">Welcome to the Official Portfolio</span>
                 <h1 class="hero-name">Dr. K. <span>Sivadeeskannan</span></h1>
-                <p class="hero-tagline"><span id="typed-role"></span><span class="typing-cursor">|</span></p>
+                <p class="hero-tagline"><span class="tagline-prefix">Active in </span><span id="typed-role"></span><span class="typing-cursor">|</span></p>
                 <p class="hero-description">
                     Building Trust Through Law, Business, And Public Service. Rooted In Sivagangai, Practicing In
                     Chennai, Operating Globally.
@@ -175,11 +183,11 @@
                     </div>
                     <div class="stat-box">
                         <div class="stat-num counter-val" data-target="6">0</div>
-                        <div class="stat-label">Academic Degrees</div>
+                        <div class="stat-label">Social Service (Years)</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-num counter-val" data-target="6">0</div>
-                        <div class="stat-label">Practice Areas</div>
+                        <div class="stat-num counter-val" data-target="10">0</div>
+                        <div class="stat-label">Honor &amp; Awards</div>
                     </div>
                     <div class="stat-box">
                         <div class="stat-num counter-val" data-target="1">0</div>

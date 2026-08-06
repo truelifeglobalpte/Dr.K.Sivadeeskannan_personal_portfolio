@@ -8,23 +8,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
     if (savedTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
-        if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
+        if (themeIcon) themeIcon.setAttribute('data-lucide', 'lightbulb');
     } else {
         document.documentElement.removeAttribute('data-theme');
-        if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+        if (themeIcon) themeIcon.setAttribute('data-lucide', 'lightbulb');
     }
 
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
+            const lampCord = document.getElementById('lamp-cord');
+            if (lampCord) {
+                lampCord.classList.add('pulling');
+                setTimeout(() => lampCord.classList.remove('pulling'), 260);
+            }
+
             const currentTheme = document.documentElement.getAttribute('data-theme');
             if (currentTheme === 'dark') {
                 document.documentElement.removeAttribute('data-theme');
                 localStorage.setItem('portfolio-theme', 'light');
-                themeIcon.setAttribute('data-lucide', 'moon');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'lightbulb');
             } else {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('portfolio-theme', 'dark');
-                themeIcon.setAttribute('data-lucide', 'sun');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'lightbulb');
             }
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
@@ -248,26 +254,17 @@ document.addEventListener('DOMContentLoaded', () => {
             return element.querySelectorAll('span > span');
         };
 
-        // Animate section titles and hero text
-        const headingsToAnimate = document.querySelectorAll('.section-title, .hero-name');
-        headingsToAnimate.forEach(heading => {
-            const wordElements = splitTextIntoWords(heading);
-            if (wordElements) {
-                gsap.from(wordElements, {
-                    scrollTrigger: {
-                        trigger: heading,
-                        start: 'top 90%',
-                        toggleActions: 'play none none none'
-                    },
-                    y: '120%',
-                    rotateZ: 3,
-                    opacity: 0,
-                    duration: 0.9,
-                    ease: 'power4.out',
-                    stagger: 0.05
-                });
-            }
-        });
+        // Animate hero name smoothly without stripping color spans
+        const heroName = document.querySelector('.hero-name');
+        if (heroName) {
+            gsap.from(heroName, {
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: 'power3.out',
+                delay: 0.2
+            });
+        }
     }
 
     // Observe all animate-on-scroll elements with original staggered logic
@@ -352,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. Typing Animation for Hero Tagline
     const typedRole = document.getElementById('typed-role');
     if (typedRole) {
-        const roles = ['Businessman', 'Lawyer', 'Social Server', 'Politician'];
+        const roles = ['Legal Practice', 'Global Business', 'Social Service', 'Public Governance'];
         let roleIndex = 0;
         let charIndex = 0;
         let isDeleting = false;

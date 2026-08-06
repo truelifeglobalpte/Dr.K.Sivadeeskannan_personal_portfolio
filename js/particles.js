@@ -5,8 +5,8 @@ class ParticleSystem {
         if (!this.canvas) return;
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
-        this.connectionDistance = 120;
-        this.mouse = { x: null, y: null, radius: 150 };
+        this.connectionDistance = 180;
+        this.mouse = { x: null, y: null, radius: 180 };
 
         this.init();
         this.animate();
@@ -25,18 +25,18 @@ class ParticleSystem {
 
     createParticles() {
         this.particles = [];
-        // Fewer particles on smaller screens for performance
-        const density = window.innerWidth < 768 ? 40 : 90;
+        const density = window.innerWidth < 768 ? 45 : 90;
         
         for (let i = 0; i < density; i++) {
             this.particles.push({
                 x: Math.random() * this.width,
                 y: Math.random() * this.height,
-                vx: (Math.random() - 0.5) * 0.6,
-                vy: (Math.random() - 0.5) * 0.6,
-                radius: Math.random() * 2.5 + 1,
-                // Gold or Teal tinted particles
-                color: Math.random() > 0.3 ? 'rgba(212, 168, 83, 0.4)' : 'rgba(0, 212, 170, 0.4)'
+                vx: (Math.random() - 0.5) * 0.7,
+                vy: (Math.random() - 0.5) * 0.7,
+                radius: Math.random() * 2.5 + 1.5,
+                // Store both theme colors
+                colorDark: Math.random() > 0.3 ? 'rgba(217, 119, 6, 0.75)' : 'rgba(16, 185, 129, 0.75)',
+                colorLight: Math.random() > 0.3 ? 'rgba(70, 70, 70, 0.7)' : 'rgba(120, 120, 120, 0.7)'
             });
         }
     }
@@ -86,12 +86,16 @@ class ParticleSystem {
                 }
             }
 
+            // Check current theme
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const currentColor = isDark ? p.colorDark : p.colorLight;
+
             // Draw particle
             this.ctx.beginPath();
             this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            this.ctx.fillStyle = p.color;
+            this.ctx.fillStyle = currentColor;
             this.ctx.shadowBlur = 4;
-            this.ctx.shadowColor = p.color;
+            this.ctx.shadowColor = currentColor;
             this.ctx.fill();
             this.ctx.shadowBlur = 0; // Reset shadow
 
@@ -103,12 +107,13 @@ class ParticleSystem {
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
                 if (dist < this.connectionDistance) {
-                    const alpha = (1 - dist / this.connectionDistance) * 0.15;
+                    const alpha = (1 - dist / this.connectionDistance) * 0.4;
                     this.ctx.beginPath();
                     this.ctx.moveTo(p.x, p.y);
                     this.ctx.lineTo(p2.x, p2.y);
-                    this.ctx.strokeStyle = `rgba(212, 168, 83, ${alpha})`;
-                    this.ctx.lineWidth = 0.8;
+                    const lineRGB = isDark ? '217, 119, 6' : '150, 150, 150'; // Gold in dark mode, light grey in light mode
+                    this.ctx.strokeStyle = `rgba(${lineRGB}, ${alpha})`;
+                    this.ctx.lineWidth = 0.9;
                     this.ctx.stroke();
                 }
             }
