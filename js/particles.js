@@ -36,9 +36,9 @@ class ParticleSystem {
                 vx: (Math.random() - 0.5) * (isMobile ? 0.5 : 0.7),
                 vy: (Math.random() - 0.5) * (isMobile ? 0.5 : 0.7),
                 radius: isMobile ? (Math.random() * 1.5 + 1) : (Math.random() * 2.5 + 1.5),
-                // Store both theme colors
-                colorDark: Math.random() > 0.3 ? 'rgba(217, 119, 6, 0.75)' : 'rgba(16, 185, 129, 0.75)',
-                colorLight: Math.random() > 0.3 ? 'rgba(80, 80, 80, 0.6)' : 'rgba(120, 120, 120, 0.6)'
+                // Store both theme colors (Royal Sapphire Blue & Electric Cyan)
+                colorDark: Math.random() > 0.35 ? 'rgba(56, 189, 248, 0.85)' : 'rgba(96, 165, 250, 0.75)',
+                colorLight: Math.random() > 0.35 ? 'rgba(37, 99, 235, 0.75)' : 'rgba(2, 132, 199, 0.65)'
             });
         }
     }
@@ -102,8 +102,8 @@ class ParticleSystem {
                 }
             }
 
-            // Check current theme
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            // Check current theme (Dark mode primary by default)
+            const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
             const currentColor = isDark ? p.colorDark : p.colorLight;
 
             // Draw particle
@@ -127,7 +127,7 @@ class ParticleSystem {
                     this.ctx.beginPath();
                     this.ctx.moveTo(p.x, p.y);
                     this.ctx.lineTo(p2.x, p2.y);
-                    const lineRGB = isDark ? '217, 119, 6' : '160, 160, 160';
+                    const lineRGB = isDark ? '56, 189, 248' : '37, 99, 235';
                     this.ctx.strokeStyle = `rgba(${lineRGB}, ${alpha})`;
                     this.ctx.lineWidth = isMobile ? 0.7 : 0.9;
                     this.ctx.stroke();

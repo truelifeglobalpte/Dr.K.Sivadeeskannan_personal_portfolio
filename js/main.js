@@ -4,33 +4,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     
-    // Check saved theme or default to 'light' (Normal mood)
-    const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
-    if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        if (themeIcon) themeIcon.setAttribute('data-lucide', 'lightbulb');
-    } else {
+    // Dark Mode Primary (Linear/Vercel Obsidian Aesthetic)
+    let savedTheme = localStorage.getItem('portfolio-theme');
+    if (savedTheme !== 'light') {
+        savedTheme = 'dark';
+        localStorage.setItem('portfolio-theme', 'dark');
         document.documentElement.removeAttribute('data-theme');
-        if (themeIcon) themeIcon.setAttribute('data-lucide', 'lightbulb');
+        if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
     }
 
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
-            const lampCord = document.getElementById('lamp-cord');
-            if (lampCord) {
-                lampCord.classList.add('pulling');
-                setTimeout(() => lampCord.classList.remove('pulling'), 260);
-            }
-
             const currentTheme = document.documentElement.getAttribute('data-theme');
-            if (currentTheme === 'dark') {
+            if (currentTheme === 'light') {
                 document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('portfolio-theme', 'light');
-                if (themeIcon) themeIcon.setAttribute('data-lucide', 'lightbulb');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('portfolio-theme', 'dark');
-                if (themeIcon) themeIcon.setAttribute('data-lucide', 'lightbulb');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('portfolio-theme', 'light');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
             }
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
@@ -403,6 +399,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (slides.length > 0) {
         function showSlide(index) {
+            const track = document.getElementById('pol-track');
+            if (track) {
+                track.style.transform = `translateX(-${index * 100}%)`;
+            }
             slides.forEach((slide, i) => {
                 slide.classList.toggle('active', i === index);
             });
@@ -424,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function startAutoSlide() {
             stopAutoSlide();
-            autoSlideTimer = setInterval(nextSlide, 2000); // Fast automatic movement every 2 seconds
+            autoSlideTimer = setInterval(nextSlide, 2000); // Smooth automatic image change every 2 seconds
         }
 
         function stopAutoSlide() {
