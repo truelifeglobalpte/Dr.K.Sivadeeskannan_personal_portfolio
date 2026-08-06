@@ -466,6 +466,10 @@ header.scrolled {
     align-items: center;
 }
 
+.mobile-only-graphic {
+    display: none !important;
+}
+
 .graphic-bg-glow {
     position: absolute;
     width: 320px;
@@ -1226,6 +1230,16 @@ footer {
    RESPONSIVE BREAKPOINTS (375px, 480px, 768px, 1024px)
    ========================================================================== */
 @media (max-width: 1024px) {
+    .desktop-only-graphic {
+        display: none !important;
+    }
+
+    .mobile-only-graphic {
+        display: flex !important;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
     .hero-wrapper {
         grid-template-columns: 1fr;
         gap: 2.5rem;
