@@ -1,5 +1,37 @@
 // GSAP, Lenis, and Portfolio UI Controller
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Theme Management (Light/Dark Mode)
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    
+    // Check saved theme or default to 'light' (Normal mood)
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+        if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('portfolio-theme', 'light');
+                themeIcon.setAttribute('data-lucide', 'moon');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('portfolio-theme', 'dark');
+                themeIcon.setAttribute('data-lucide', 'sun');
+            }
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    }
+
     // 1. Initialize Smooth Scrolling (Lenis)
     let lenis;
     try {

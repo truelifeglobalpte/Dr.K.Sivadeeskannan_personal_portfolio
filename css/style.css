@@ -2,30 +2,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* Exact Color Palette from Reference */
-    --color-bg-deep: #110c08;      /* Warm dark charcoal/brown */
-    --color-bg-card: #19120e;      /* Warmer dark card bg */
-    --color-bg-nav: rgba(17, 12, 8, 0.85);
-    --color-primary: #110c08;
-    --color-accent-gold: #f7a224;  /* Warm Gold Accent */
-    --color-accent-gold-glow: rgba(247, 162, 36, 0.12);
-    --color-accent-teal: #10b981;  /* Secondary Accent Emerald */
-    --color-accent-teal-glow: rgba(16, 185, 129, 0.1);
+    /* LIGHT THEME (Default Normal Mood) */
+    --color-bg-deep: #faf7f2;      /* Warm off-white */
+    --color-bg-card: #ffffff;      /* Pure white cards */
+    --color-bg-nav: rgba(250, 247, 242, 0.85);
+    --color-primary: #faf7f2;
+    --color-accent-gold: #d97706;  /* Deeper gold for contrast */
+    --color-accent-gold-glow: rgba(217, 119, 6, 0.15);
+    --color-accent-teal: #059669;
+    --color-accent-teal-glow: rgba(5, 150, 105, 0.15);
     
-    --color-text-white: #ffffff;
-    --color-text-body: #f5ede1;    /* Warm off-white body text */
-    --color-text-muted: #a39d96;   /* Muted warm grey */
+    --color-text-white: #110c08;   /* Dark heading text */
+    --color-text-body: #3a322c;    /* Dark body text */
+    --color-text-muted: #6b5c53;   /* Muted body text */
     
-    --glass-border: #2d2823;       /* Border / Input Border */
-    --glass-border-hover: #f7a224;
+    --glass-border: #e7e0d5;       /* Soft light border */
+    --glass-border-hover: #d97706;
+    
+    --card-shadow: 0 10px 40px -10px rgba(0,0,0,0.06);
 
     /* Fonts */
     --font-heading: "Fraunces", Georgia, serif;
     --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 
     /* Transitions */
-    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-fast: all 0.2s ease-out;
+    --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: all 0.25s ease-out;
+}
+
+[data-theme="dark"] {
+    /* DARK THEME (Night Mood) */
+    --color-bg-deep: #110c08;
+    --color-bg-card: #19120e;
+    --color-bg-nav: rgba(17, 12, 8, 0.85);
+    --color-primary: #110c08;
+    --color-accent-gold: #f7a224;
+    --color-accent-gold-glow: rgba(247, 162, 36, 0.12);
+    --color-accent-teal: #10b981;
+    --color-accent-teal-glow: rgba(16, 185, 129, 0.1);
+    
+    --color-text-white: #ffffff;
+    --color-text-body: #f5ede1;
+    --color-text-muted: #a39d96;
+    
+    --glass-border: #2d2823;
+    --glass-border-hover: #f7a224;
+    
+    --card-shadow: 0 10px 40px -10px rgba(0,0,0,0.4);
 }
 
 /* Base Reset & Core Styles */
@@ -71,9 +94,12 @@ body {
     position: absolute;
     inset: 0;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-    opacity: 0.035;
-    mix-blend-mode: overlay;
+    opacity: 0.04;
+    mix-blend-mode: multiply; /* Better for both light/dark */
     pointer-events: none;
+}
+[data-theme="dark"] .grid-3d-bg::after {
+    mix-blend-mode: overlay;
 }
 
 /* Header & Glass Nav */
@@ -136,6 +162,26 @@ header.scrolled {
     transition: var(--transition-fast);
     position: relative;
     padding: 0.25rem 0;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-text-white);
+    transition: var(--transition-smooth);
+}
+.theme-toggle:hover {
+    border-color: var(--color-accent-gold);
+    color: var(--color-accent-gold);
+    background: var(--color-accent-gold-glow);
+    transform: rotate(15deg) scale(1.05);
 }
 
 .nav-links a:hover,
@@ -260,14 +306,30 @@ section {
 .glass-card {
     background: var(--color-bg-card);
     border: 1px solid var(--glass-border);
-    border-radius: 12px; /* Clean layout border-radius */
-    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
     transition: var(--transition-smooth);
 }
 
 .glass-card:hover {
-    border-color: var(--glass-border-hover);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--color-glass-border-hover);
+    box-shadow: 0 25px 50px -12px var(--color-accent-gold-glow);
+}
+
+.glass-card:hover::before {
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
 }
 
 /* Hero Section */
