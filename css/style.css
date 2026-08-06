@@ -86,7 +86,7 @@ body {
     color: var(--color-text-body);
     font-family: var(--font-body);
     line-height: 1.6;
-    overflow-x: hidden;
+    /* overflow-x: hidden removed — it breaks position:fixed for social sidebar */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -1225,10 +1225,65 @@ footer {
         display: none !important;
     }
 }
-
 /* ==========================================================================
-   RESPONSIVE BREAKPOINTS (375px, 480px, 768px, 1024px)
+   FLOATING SOCIAL SIDEBAR
    ========================================================================== */
+.floating-social-bar {
+    position: fixed !important;
+    right: 12px !important;
+    top: 65% !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    z-index: 99999 !important;
+}
+
+.fsb-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff !important;
+    text-decoration: none;
+    transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    flex-shrink: 0;
+}
+
+.fsb-btn:hover {
+    transform: scale(1.15) translateX(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.fsb-whatsapp  { background: #25D366; }
+.fsb-call      { background: #0078d4; }
+.fsb-facebook  { background: #1877F2; }
+.fsb-instagram { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.fsb-youtube   { background: #FF0000; }
+.fsb-x         { background: #000000; }
+.fsb-linkedin  { background: #0A66C2; }
+
+/* On very small screens, reduce button size */
+@media (max-width: 480px) {
+    .floating-social-bar {
+        right: 0;
+        gap: 5px;
+    }
+    .fsb-btn {
+        width: 40px;
+        height: 40px;
+        margin-right: 6px;
+    }
+    .fsb-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+
 @media (max-width: 1024px) {
     .desktop-only-graphic {
         display: none !important;
