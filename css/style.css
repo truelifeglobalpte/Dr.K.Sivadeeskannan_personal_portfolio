@@ -1266,20 +1266,40 @@ footer {
 .fsb-x         { background: #000000; }
 .fsb-linkedin  { background: #0A66C2; }
 
-/* On very small screens, reduce button size */
-@media (max-width: 480px) {
+/* On very small screens, move to bottom-right */
+@media (max-width: 768px) {
     .floating-social-bar {
-        right: 0;
-        gap: 5px;
+        top: auto !important;
+        transform: none !important;
+        bottom: 20px !important;
+        right: 10px !important;
+        gap: 6px !important;
     }
     .fsb-btn {
         width: 40px;
         height: 40px;
-        margin-right: 6px;
     }
     .fsb-btn svg {
         width: 18px;
         height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-social-bar {
+        top: auto !important;
+        transform: none !important;
+        bottom: 20px !important;
+        right: 8px !important;
+        gap: 5px !important;
+    }
+    .fsb-btn {
+        width: 38px;
+        height: 38px;
+    }
+    .fsb-btn svg {
+        width: 17px;
+        height: 17px;
     }
 }
 
