@@ -671,8 +671,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const percentX = (x - centerX) / centerX;
                 const percentY = (y - centerY) / centerY;
 
+                const isMobile = window.innerWidth <= 768;
+
                 // Extra strong tilt angle for main hero & about portraits - made extremely subtle
-                const maxTilt = isMainPortrait ? 6 : 4;
+                const maxTilt = isMainPortrait ? (isMobile ? 8 : 6) : (isMobile ? 6 : 4);
                 const rotateX = (-percentY * maxTilt).toFixed(2);
                 const rotateY = (percentX * maxTilt).toFixed(2);
 
@@ -680,14 +682,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const zVal = isMainPortrait ? 4 : 3;
 
                 container.style.transition = 'transform 0.1s ease-out, box-shadow 0.2s ease-out';
-                container.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scaleVal}, ${scaleVal}, ${scaleVal}) translateZ(${zVal}px)`;
+                
+                if (isMobile) {
+                    // Keep container flat on mobile
+                    container.style.transform = 'none';
+                } else {
+                    container.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scaleVal}, ${scaleVal}, ${scaleVal}) translateZ(${zVal}px)`;
+                }
                 container.classList.add('tilt-3d-active');
 
                 // 3D Z-Pop layer for the actual photo
                 if (img) {
-                    const imgZ = isMainPortrait ? 8 : 5;
                     img.style.transition = 'transform 0.1s ease-out, border-color 0.2s ease';
-                    img.style.transform = `translateZ(${imgZ}px) scale(1.01)`;
+                    if (isMobile) {
+                        // Apply tilt rotation directly to the image itself on mobile screens
+                        img.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                    } else {
+                        const imgZ = isMainPortrait ? 8 : 5;
+                        img.style.transform = `translateZ(${imgZ}px) scale(1.01)`;
+                    }
                     if (isMainPortrait) {
                         img.style.borderColor = 'var(--color-accent-gold)';
                     }
@@ -695,38 +708,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (glassCard) {
                     glassCard.style.transition = 'transform 0.1s ease-out';
-                    glassCard.style.transform = 'translateZ(5px)';
+                    glassCard.style.transform = isMobile ? 'none' : 'translateZ(5px)';
                 }
 
                 // Reverse 3D Parallax for ambient background glow
                 if (bgGlow) {
-                    const glowX = (-percentX * 5).toFixed(2);
-                    const glowY = (-percentY * 5).toFixed(2);
-                    bgGlow.style.transform = `translate(${glowX}px, ${glowY}px) scale(1.05)`;
+                    if (isMobile) {
+                        bgGlow.style.transform = 'none';
+                    } else {
+                        const glowX = (-percentX * 5).toFixed(2);
+                        const glowY = (-percentY * 5).toFixed(2);
+                        bgGlow.style.transform = `translate(${glowX}px, ${glowY}px) scale(1.05)`;
+                    }
                 }
 
-                glare.style.opacity = '1';
-                const glareIntensity = isMainPortrait ? 0.2 : 0.15;
-                glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, ${glareIntensity}) 0%, rgba(56, 189, 248, 0.05) 40%, transparent 80%)`;
+                glare.style.opacity = isMobile ? '0' : '1';
+                if (!isMobile) {
+                    const glareIntensity = isMainPortrait ? 0.2 : 0.15;
+                    glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, ${glareIntensity}) 0%, rgba(56, 189, 248, 0.05) 40%, transparent 80%)`;
+                }
             }
 
             function handleEnd() {
                 container.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease';
-                container.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateZ(0px)';
+                container.style.transform = 'none';
                 container.classList.remove('tilt-3d-active');
 
                 if (img) {
                     img.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-                    img.style.transform = 'translateZ(0px) scale(1)';
+                    img.style.transform = 'none';
                 }
 
                 if (glassCard) {
                     glassCard.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-                    glassCard.style.transform = 'translateZ(0px)';
+                    glassCard.style.transform = 'none';
                 }
 
                 if (bgGlow) {
-                    bgGlow.style.transform = 'translate(0px, 0px) scale(1)';
+                    bgGlow.style.transform = 'none';
                 }
 
                 glare.style.opacity = '0';

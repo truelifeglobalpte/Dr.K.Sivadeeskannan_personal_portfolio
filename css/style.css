@@ -2332,6 +2332,28 @@ footer {
     box-shadow: 0 8px 16px -8px rgba(37, 99, 235, 0.2), 0 0 15px rgba(56, 189, 248, 0.15) !important;
 }
 
+/* MOBILE SPECIFIC OVERRIDES & TAP FIXES */
+.tilt-3d-container, 
+.tilt-card, 
+.hero-graphic, 
+.about-img-box, 
+.hero-avatar,
+.tilt-3d-container img,
+.about-img-box img,
+.hero-graphic img,
+a, button {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none;
+}
+
+@media (max-width: 768px) {
+    .tilt-3d-active img,
+    .hero-graphic.tilt-3d-active .hero-avatar,
+    .about-img-box.tilt-3d-active img {
+        animation: none !important;
+    }
+}
+
 
 
 
