@@ -1678,6 +1678,35 @@ footer {
         display: flex;
     }
 
+    /* Gallery Filter Tabs - Horizontal Scrollable Pill Bar on Mobile */
+    .gallery-filter-tabs {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        justify-content: flex-start !important;
+        gap: 0.5rem !important;
+        padding: 0.3rem 0.2rem 0.8rem 0.2rem !important;
+        margin-bottom: 1.5rem !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .gallery-filter-tabs::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+    }
+
+    .gallery-tab {
+        flex: 0 0 auto !important;
+        padding: 0.5rem 0.9rem !important;
+        font-size: 0.82rem !important;
+        white-space: nowrap !important;
+    }
+
+    .gallery-tab i {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
     .timeline-card,
     .gallery-card {
         grid-template-columns: 1fr;
