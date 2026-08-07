@@ -1498,6 +1498,8 @@ footer {
 .testimonial-card {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     padding: 1.5rem 0.5rem;
     position: relative;
     transition: var(--transition-smooth);
@@ -1514,35 +1516,37 @@ footer {
 .testimonial-card::after {
     content: "“";
     position: absolute;
-    right: 0.5rem;
-    top: -0.5rem;
+    left: 50%;
+    top: -1rem;
+    transform: translateX(-50%);
     font-family: Georgia, serif;
-    font-size: 7rem;
+    font-size: 8rem;
     line-height: 1;
     color: var(--color-accent-gold);
-    opacity: 0.15;
+    opacity: 0.12;
     pointer-events: none;
 }
 
 .testimonial-header {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1.1rem;
-    margin-bottom: 1.1rem;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
 }
 
 .testimonial-avatar-badge {
-    width: 52px;
-    height: 52px;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     color: #ffffff;
-    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
-    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.85);
 }
 
 .avatar-legal  { background: linear-gradient(135deg, #1e3a8a, #2563eb); }
@@ -1550,40 +1554,46 @@ footer {
 .avatar-edu    { background: linear-gradient(135deg, #7c3aed, #a855f7); }
 .avatar-social { background: linear-gradient(135deg, #059669, #10b981); }
 
+.testimonial-author-info {
+    text-align: center;
+}
+
 .testimonial-author-info h4 {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--color-text-white);
     margin-bottom: 0.2rem;
 }
 
 .testimonial-author-info span {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     color: var(--color-text-muted);
     font-weight: 500;
 }
 
 .testimonial-rating {
     display: flex;
+    justify-content: center;
     gap: 0.3rem;
     color: #f59e0b;
-    margin-bottom: 1.1rem;
+    margin-bottom: 1.25rem;
 }
 
 .testimonial-rating svg {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     fill: #f59e0b;
 }
 
 .testimonial-text {
-    font-size: 1.02rem;
+    font-size: 1.08rem;
     color: var(--color-text-body);
-    line-height: 1.7;
+    line-height: 1.75;
     font-style: italic;
     margin-bottom: 1.75rem;
-    flex-grow: 1;
+    max-width: 720px;
+    text-align: center;
     position: relative;
     z-index: 1;
 }
@@ -1591,9 +1601,12 @@ footer {
 .testimonial-footer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 1rem;
     padding-top: 1rem;
     border-top: 1px solid var(--glass-border);
+    width: 100%;
+    max-width: 450px;
     font-size: 0.85rem;
 }
 
