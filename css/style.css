@@ -1455,10 +1455,23 @@ footer {
    ========================================================================== */
 .testimonials-slider-container {
     position: relative;
-    max-width: 800px;
+    max-width: 920px;
     margin: 0 auto;
+    padding: 0 65px;
+}
+
+.testimonials-slider-container .prev-btn {
+    left: 0;
+}
+
+.testimonials-slider-container .next-btn {
+    right: 0;
+}
+
+.testimonials-slider-track-wrapper {
     overflow: hidden;
-    padding: 0 10px;
+    width: 100%;
+    border-radius: 20px;
 }
 
 .testimonials-slider-track {
@@ -1470,11 +1483,11 @@ footer {
 .testimonial-slide {
     flex: 0 0 100%;
     min-width: 100%;
-    opacity: 0.3;
-    scale: 0.96;
+    opacity: 0.2;
+    scale: 0.97;
     transition: opacity 0.5s ease, scale 0.5s ease;
     box-sizing: border-box;
-    padding: 0 5px;
+    padding: 0 4px;
 }
 
 .testimonial-slide.active {
@@ -1485,36 +1498,64 @@ footer {
 .testimonial-card {
     display: flex;
     flex-direction: column;
-    padding: 1.75rem;
+    padding: 2.25rem 2rem;
     position: relative;
     transition: var(--transition-smooth);
     border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    background: var(--color-bg-card);
+    box-shadow: 0 12px 35px -10px rgba(15, 23, 42, 0.08);
+    overflow: hidden;
+}
+
+.testimonial-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-accent-indigo), #38bdf8, var(--color-accent-gold));
+}
+
+.testimonial-card::after {
+    content: "“";
+    position: absolute;
+    right: 1.5rem;
+    top: 0.5rem;
+    font-family: Georgia, serif;
+    font-size: 6rem;
+    line-height: 1;
+    color: var(--color-accent-gold);
+    opacity: 0.12;
+    pointer-events: none;
 }
 
 .testimonial-card:hover {
     border-color: var(--glass-border-hover);
     box-shadow: var(--card-glow-shadow);
-    transform: translateY(-4px);
+    transform: translateY(-5px);
 }
 
 .testimonial-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 1.1rem;
+    margin-bottom: 1.1rem;
 }
 
 .testimonial-avatar-badge {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: #ffffff;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
 .avatar-legal  { background: linear-gradient(135deg, #1e3a8a, #2563eb); }
@@ -1524,55 +1565,62 @@ footer {
 
 .testimonial-author-info h4 {
     font-family: var(--font-heading);
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--color-text-white);
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.2rem;
 }
 
 .testimonial-author-info span {
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     color: var(--color-text-muted);
     font-weight: 500;
 }
 
 .testimonial-rating {
     display: flex;
-    gap: 0.25rem;
+    gap: 0.3rem;
     color: #f59e0b;
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
 }
 
 .testimonial-rating svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     fill: #f59e0b;
 }
 
 .testimonial-text {
-    font-size: 0.95rem;
+    font-size: 1.02rem;
     color: var(--color-text-body);
-    line-height: 1.65;
+    line-height: 1.7;
     font-style: italic;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
     flex-grow: 1;
+    position: relative;
+    z-index: 1;
 }
 
 .testimonial-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 0.85rem;
+    padding-top: 1rem;
     border-top: 1px solid var(--glass-border);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
 }
 
 .testimonial-tag {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    color: var(--color-accent-gold);
+    gap: 0.4rem;
+    color: var(--color-accent-indigo);
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
     font-weight: 600;
+    font-size: 0.78rem;
 }
 
 .testimonial-tag svg {
@@ -1582,7 +1630,8 @@ footer {
 
 .testimonial-location {
     color: var(--color-text-muted);
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 0.82rem;
 }
 
 /* Hide custom cursor dot & outline on touch devices */
