@@ -696,7 +696,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     img.style.transition = 'transform 0.1s ease-out, border-color 0.2s ease';
                     if (isMobile) {
                         // Apply tilt rotation directly to the image itself on mobile screens
-                        img.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                        // For the main hero avatar, keep the scale to 1.18 to prevent white margins from showing.
+                        const scale = isMainPortrait ? 1.18 : 1.02;
+                        img.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
                     } else {
                         const imgZ = isMainPortrait ? 8 : 5;
                         img.style.transform = `translateZ(${imgZ}px) scale(1.01)`;
@@ -730,13 +732,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function handleEnd() {
+                const isMobile = window.innerWidth <= 768;
                 container.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease';
                 container.style.transform = 'none';
                 container.classList.remove('tilt-3d-active');
 
                 if (img) {
                     img.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-                    img.style.transform = 'none';
+                    if (isMobile && isMainPortrait) {
+                        // Restore base scale on mobile to keep white borders cropped out
+                        img.style.transform = 'scale(1.15)';
+                    } else {
+                        img.style.transform = 'none';
+                    }
                 }
 
                 if (glassCard) {
