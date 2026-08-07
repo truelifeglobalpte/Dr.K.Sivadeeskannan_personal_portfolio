@@ -95,6 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     duration: 0.15,
                     ease: "power2.out"
                 });
+            } else {
+                cursorOutline.style.left = `${posX}px`;
+                cursorOutline.style.top = `${posY}px`;
             }
         });
 

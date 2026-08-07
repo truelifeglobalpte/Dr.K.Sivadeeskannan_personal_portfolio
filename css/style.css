@@ -1666,7 +1666,7 @@ footer {
     font-size: 1.6rem;
     color: #ffffff;
     box-shadow: 0 8px 24px rgba(37, 99, 235, 0.28);
-    border: 3px solid var(--color-accent-blue);
+    border: 3px solid var(--color-accent-indigo);
     background: #ffffff;
     overflow: hidden;
     padding: 4px;
