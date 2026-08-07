@@ -628,7 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 9. Universal 3D Interactive Touch & Mouse Tilt Effect for All Images
     function init3DImageEffects() {
         const imageContainers = document.querySelectorAll(
-            '.hero-graphic, .about-img-box, .gallery-card, .pillar-card, .practice-card, .biz-card, .testimonial-slide, .hero-avatar'
+            '.about-img-box, .gallery-card, .pillar-card, .practice-card, .biz-card, .testimonial-slide'
         );
 
         imageContainers.forEach(container => {

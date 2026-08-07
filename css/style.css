@@ -2325,7 +2325,6 @@ footer {
 }
 
 .tilt-3d-active img,
-.hero-graphic.tilt-3d-active .hero-avatar,
 .about-img-box.tilt-3d-active img {
     animation: touchFloatLevitate 4s ease-in-out infinite alternate !important;
     border-color: var(--color-accent-gold) !important;
@@ -2348,29 +2347,15 @@ a, button {
 
 @media (max-width: 768px) {
     .tilt-3d-active img,
-    .hero-graphic.tilt-3d-active .hero-avatar,
     .about-img-box.tilt-3d-active img {
         animation: none !important;
     }
     .tilt-3d-glare {
         display: none !important;
     }
-    .hero-graphic, .hero-avatar, .about-img-box, .about-img-box img, .tilt-3d-container {
+    .about-img-box, .about-img-box img, .tilt-3d-container {
         background: transparent !important;
         background-color: transparent !important;
-    }
-    .hero-graphic {
-        overflow: hidden !important;
-        border-radius: 20px !important;
-    }
-    .hero-avatar {
-        /* Crop any baked-in white margins from the JPEG image file on mobile */
-        transform: scale(1.15);
-        transition: transform 0.3s ease !important;
-    }
-    .hero-graphic.tilt-3d-active .hero-avatar {
-        /* Keep scale zoomed on mobile tap/tilt to prevent white margins from reappearing */
-        transform: scale(1.18);
     }
 }
 
