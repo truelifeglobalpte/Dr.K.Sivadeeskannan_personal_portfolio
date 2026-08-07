@@ -284,46 +284,50 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el);
     });
 
-    // 4. Lightbox/Gallery Viewer
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    // 4. Lightbox/Gallery Viewer Modal
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
     const lightboxClose = document.getElementById('lightbox-close');
 
-    if (galleryItems.length > 0 && lightbox && lightboxImg) {
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const img = item.querySelector('img');
-                const captionText = item.querySelector('.gallery-overlay p')?.textContent || '';
-                
-                if (img) {
-                    lightboxImg.src = img.src;
-                    lightboxCaption.textContent = captionText;
-                    lightbox.classList.add('active');
-                    if (lenis) lenis.stop();
-                }
-            });
-        });
+    function openLightbox(imgSrc, captionText) {
+        if (lightbox && lightboxImg) {
+            lightboxImg.src = imgSrc;
+            if (lightboxCaption) lightboxCaption.textContent = captionText || '';
+            lightbox.classList.add('active');
+            if (typeof lenis !== 'undefined' && lenis) lenis.stop();
+        }
+    }
 
-        const closeLightbox = () => {
+    function closeLightbox() {
+        if (lightbox) {
             lightbox.classList.remove('active');
-            if (lenis) lenis.start();
-        };
+            if (typeof lenis !== 'undefined' && lenis) lenis.start();
+        }
+    }
 
-        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    // Attach click triggers to all view buttons & image wrappers
+    document.addEventListener('click', (e) => {
+        const trigger = e.target.closest('[data-img]');
+        if (trigger) {
+            const imgSrc = trigger.getAttribute('data-img');
+            const captionText = trigger.getAttribute('data-caption');
+            if (imgSrc) openLightbox(imgSrc, captionText);
+        }
+    });
+
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if (lightbox) {
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightbox();
-            }
+            if (e.target === lightbox) closeLightbox();
         });
     }
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
 
     // 5. Contact Form Validation
     const contactForm = document.getElementById('contact-form');
@@ -388,78 +392,132 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(typeRole, 800);
     }
 
-    // 7. Public & Political Slider Showcase (Auto-moving slider)
-    const slides = document.querySelectorAll('.political-slide');
-    const dots = document.querySelectorAll('.slider-dots .dot');
-    const prevBtn = document.getElementById('pol-prev');
-    const nextBtn = document.getElementById('pol-next');
-    let currentSlide = 0;
+    // 7. Gallery, Recognition & Certificates Interactive Moving Showcase
+    const gallerySlides = Array.from(document.querySelectorAll('.gallery-slide'));
+    const galleryTrack = document.getElementById('gallery-track');
+    const galleryDotsContainer = document.getElementById('gallery-dots');
+    const galleryPrevBtn = document.getElementById('gallery-prev');
+    const galleryNextBtn = document.getElementById('gallery-next');
+    const filterTabs = document.querySelectorAll('.gallery-tab');
+
+    let currentFilter = 'all';
+    let visibleSlides = [...gallerySlides];
+    let currentSlideIndex = 0;
     let autoSlideTimer;
 
-    if (slides.length > 0) {
-        function showSlide(index) {
-            const track = document.getElementById('pol-track');
-            if (track) {
-                track.style.transform = `translateX(-${index * 100}%)`;
+    if (gallerySlides.length > 0 && galleryTrack) {
+
+        function updateVisibleSlides() {
+            visibleSlides = gallerySlides.filter(slide => {
+                const category = slide.getAttribute('data-category');
+                if (currentFilter === 'all' || category === currentFilter) {
+                    slide.classList.remove('hidden-by-filter');
+                    return true;
+                } else {
+                    slide.classList.add('hidden-by-filter');
+                    return false;
+                }
+            });
+
+            // Rebuild pagination dots
+            if (galleryDotsContainer) {
+                galleryDotsContainer.innerHTML = '';
+                visibleSlides.forEach((_, idx) => {
+                    const dot = document.createElement('span');
+                    dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+                    dot.setAttribute('data-idx', idx);
+                    dot.addEventListener('click', () => {
+                        showSlide(idx);
+                        startAutoSlide();
+                    });
+                    galleryDotsContainer.appendChild(dot);
+                });
             }
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === index);
-            });
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-            currentSlide = index;
+
+            // Reset slide position
+            currentSlideIndex = 0;
+            showSlide(0);
+        }
+
+        function showSlide(index) {
+            if (visibleSlides.length === 0) return;
+            if (index < 0) index = visibleSlides.length - 1;
+            if (index >= visibleSlides.length) index = 0;
+
+            currentSlideIndex = index;
+
+            // Find index of current visible slide relative to track layout
+            gallerySlides.forEach(slide => slide.classList.remove('active'));
+            const activeSlide = visibleSlides[currentSlideIndex];
+
+            if (activeSlide) {
+                activeSlide.classList.add('active');
+                // Calculate position relative to visible slides
+                galleryTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            }
+
+            // Update dots
+            if (galleryDotsContainer) {
+                const dots = galleryDotsContainer.querySelectorAll('.dot');
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle('active', idx === currentSlideIndex);
+                });
+            }
         }
 
         function nextSlide() {
-            const nextIndex = (currentSlide + 1) % slides.length;
-            showSlide(nextIndex);
+            showSlide(currentSlideIndex + 1);
         }
 
         function prevSlide() {
-            const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(prevIndex);
+            showSlide(currentSlideIndex - 1);
         }
 
         function startAutoSlide() {
             stopAutoSlide();
-            autoSlideTimer = setInterval(nextSlide, 2000); // Smooth automatic image change every 2 seconds
+            autoSlideTimer = setInterval(nextSlide, 3000); // Continuous automatic slide switching every 3 seconds
         }
 
         function stopAutoSlide() {
             if (autoSlideTimer) clearInterval(autoSlideTimer);
         }
 
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
+        // Prev & Next Buttons
+        if (galleryNextBtn) {
+            galleryNextBtn.addEventListener('click', () => {
                 nextSlide();
                 startAutoSlide();
             });
         }
 
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
+        if (galleryPrevBtn) {
+            galleryPrevBtn.addEventListener('click', () => {
                 prevSlide();
                 startAutoSlide();
             });
         }
 
-        dots.forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                const index = parseInt(e.target.getAttribute('data-index'), 10);
-                showSlide(index);
+        // Category Filter Tab click handling
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentFilter = tab.getAttribute('data-filter') || 'all';
+                updateVisibleSlides();
                 startAutoSlide();
+                if (typeof lucide !== 'undefined') lucide.createIcons();
             });
         });
 
-        // Pause auto-sliding on hover
-        const container = document.querySelector('.political-slider-container');
+        // Pause on hover
+        const container = document.querySelector('.gallery-slider-container');
         if (container) {
             container.addEventListener('mouseenter', stopAutoSlide);
             container.addEventListener('mouseleave', startAutoSlide);
         }
 
-        // Start auto-slider
+        // Initial setup
+        updateVisibleSlides();
         startAutoSlide();
     }
 });

@@ -869,45 +869,131 @@ header.scrolled {
 }
 
 /* ==========================================================================
-   PUBLIC & POLITICAL ENGAGEMENT SLIDER
+   GALLERY, RECOGNITION & CERTIFICATES SHOWCASE
    ========================================================================== */
-.political-slider-container {
-    position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
-    overflow: hidden;
+#gallery {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
 }
 
-.political-slider-track {
+.gallery-intro {
+    text-align: center;
+    max-width: 720px;
+    margin: -1rem auto 2.5rem auto;
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* Filter Category Tabs */
+.gallery-filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+}
+
+.gallery-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.3rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--color-text-body);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    backdrop-filter: blur(10px);
+}
+
+.gallery-tab i {
+    width: 16px;
+    height: 16px;
+    color: var(--color-accent-gold);
+}
+
+.gallery-tab:hover {
+    background: rgba(37, 99, 235, 0.15);
+    border-color: rgba(56, 189, 248, 0.4);
+    color: var(--color-text-white);
+    transform: translateY(-2px);
+}
+
+.gallery-tab.active {
+    background: linear-gradient(135deg, var(--color-accent-indigo), #1d4ed8);
+    border-color: var(--color-accent-gold);
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+}
+
+.gallery-tab.active i {
+    color: #ffffff;
+}
+
+/* Slider Track & Cards */
+.gallery-slider-container {
+    position: relative;
+    max-width: 1040px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0.5rem;
+}
+
+.gallery-slider-track {
     display: flex;
     transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
 }
 
-.political-slide {
+.gallery-slide {
     min-width: 100%;
-    padding: 0 0.5rem;
     box-sizing: border-box;
-    opacity: 0.25;
+    padding: 0 0.5rem;
+    opacity: 0.3;
     transform: scale(0.96);
     transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, transform;
 }
 
-.political-slide.active {
+.gallery-slide.active {
     opacity: 1;
     transform: scale(1);
 }
 
-.timeline-card {
+.gallery-slide.hidden-by-filter {
+    display: none !important;
+}
+
+.gallery-card {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.1fr;
     gap: 2.5rem;
     align-items: center;
     padding: 2.5rem;
+    border-radius: 20px;
 }
 
-.timeline-info h4 {
+.gallery-card-badge {
+    background: rgba(37, 99, 235, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    color: var(--color-accent-gold);
+    padding: 0.35rem 0.9rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.25rem;
+}
+
+.gallery-card-info h4 {
     font-family: var(--font-heading);
     font-size: 1.6rem;
     font-weight: 700;
@@ -916,28 +1002,81 @@ header.scrolled {
     line-height: 1.3;
 }
 
-.timeline-info p {
-    font-size: 1rem;
+.gallery-card-info p {
+    font-size: 0.98rem;
     color: var(--color-text-body);
     line-height: 1.65;
+    margin-bottom: 1.75rem;
 }
 
-.slide-img-wrapper {
-    overflow: hidden;
-    border-radius: 14px;
+.view-cert-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.4rem;
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--glass-border);
+    color: var(--color-accent-gold);
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
 }
 
-.timeline-img {
+.view-cert-btn:hover {
+    background: var(--color-accent-indigo);
+    border-color: var(--color-accent-gold);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+}
+
+.gallery-card-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+    background: radial-gradient(circle at center, rgba(15, 23, 42, 0.95), rgba(5, 8, 20, 1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.gallery-card-img {
     width: 100%;
-    height: 320px;
-    object-fit: cover;
+    height: 350px;
+    object-fit: contain;
+    padding: 0.6rem;
     display: block;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.timeline-card:hover .timeline-img {
+.gallery-card-img-wrapper:hover .gallery-card-img {
     transform: scale(1.05);
+}
+
+.img-zoom-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 30, 0.65);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-card-img-wrapper:hover .img-zoom-overlay {
+    opacity: 1;
 }
 
 /* Slider Controls */
@@ -946,10 +1085,10 @@ header.scrolled {
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
-    background: rgba(17, 19, 26, 0.85);
+    background: rgba(17, 19, 26, 0.9);
     border: 1px solid var(--glass-border);
     color: var(--color-text-white);
     display: flex;
@@ -957,23 +1096,24 @@ header.scrolled {
     justify-content: center;
     cursor: pointer;
     transition: var(--transition-fast);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
 }
 
 .slider-btn:hover {
     background: var(--color-accent-indigo);
     border-color: var(--color-accent-gold);
     color: #ffffff;
+    transform: translateY(-50%) scale(1.1);
 }
 
-.prev-btn { left: -10px; }
-.next-btn { right: -10px; }
+.prev-btn { left: 5px; }
+.next-btn { right: 5px; }
 
 .slider-dots {
     display: flex;
     justify-content: center;
     gap: 0.6rem;
-    margin-top: 1.75rem;
+    margin-top: 2rem;
 }
 
 .slider-dots .dot {
@@ -986,9 +1126,84 @@ header.scrolled {
 }
 
 .slider-dots .dot.active {
-    width: 28px;
+    width: 30px;
     border-radius: 6px;
     background: var(--color-accent-gold);
+}
+
+/* Lightbox Modal */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 8, 18, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    padding: 2rem;
+}
+
+.lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    color: #ffffff;
+    font-size: 2.2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    line-height: 1;
+    z-index: 100000;
+}
+
+.lightbox-close:hover {
+    background: #dc2743;
+    border-color: #dc2743;
+    transform: rotate(90deg);
+}
+
+.lightbox-content {
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 72vh;
+    object-fit: contain;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-caption {
+    color: var(--color-accent-gold);
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-align: center;
+    max-width: 700px;
 }
 
 /* ==========================================================================
@@ -1430,13 +1645,15 @@ footer {
         display: flex;
     }
 
-    .timeline-card {
+    .timeline-card,
+    .gallery-card {
         grid-template-columns: 1fr;
         padding: 1.75rem 1.25rem;
     }
 
-    .timeline-img {
-        height: 240px;
+    .timeline-img,
+    .gallery-card-img {
+        height: 250px;
     }
 
     .social-grid,
