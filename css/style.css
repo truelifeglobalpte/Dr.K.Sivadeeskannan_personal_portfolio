@@ -411,18 +411,19 @@ header.scrolled {
 }
 
 .hero-tagline {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     font-weight: 500;
     color: var(--color-accent-gold);
     margin-bottom: 1.25rem;
     font-family: var(--font-heading);
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
+    line-height: 1.6;
+    display: block;
 }
 
 .tagline-prefix {
     color: var(--color-text-muted);
+    white-space: nowrap;
+    margin-right: 0.35rem;
 }
 
 .typing-cursor {
@@ -1946,6 +1947,12 @@ footer {
 
     .hero-name {
         font-size: clamp(2.1rem, 7.5vw, 3rem);
+    }
+
+    .hero-tagline {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        margin-bottom: 1.2rem;
     }
 
     .hero-description {
