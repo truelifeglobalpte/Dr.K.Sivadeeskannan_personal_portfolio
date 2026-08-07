@@ -166,12 +166,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Sticky Header visual update on scroll
+    // Sticky Header visual update and ScrollSpy on scroll
+    const navLinksList = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+    const sectionsList = document.querySelectorAll('section');
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
+        }
+
+        let currentSectionId = '';
+        const scrollPosition = window.scrollY + 200; // offset for sticky header
+
+        sectionsList.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            if (scrollPosition >= sectionTop && scrollPosition < (sectionTop + sectionHeight)) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+
+        if (currentSectionId) {
+            navLinksList.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
         }
     });
 
@@ -212,27 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Safe Counter Up Animation
-        const counters = document.querySelectorAll('.counter-val');
-        counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'), 10);
-            const countObj = { val: 0 };
-            const isPlus = target === 6 || target === 10;
-            
-            gsap.to(countObj, {
-                scrollTrigger: {
-                    trigger: counter,
-                    start: 'top 90%',
-                    toggleActions: 'play none none none'
-                },
-                val: target,
-                duration: 2,
-                ease: 'power2.out',
-                onUpdate: () => {
-                    counter.textContent = Math.floor(countObj.val) + (isPlus ? '+' : '');
-                }
-            });
-        });
     }
 
     // 4. Advanced GSAP Text Reveals (Trending Effect)

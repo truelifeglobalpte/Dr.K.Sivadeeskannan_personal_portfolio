@@ -220,6 +220,7 @@ header.scrolled {
     display: flex;
     align-items: center;
     gap: 0.35rem;
+    white-space: nowrap;
 }
 
 .logo span {
@@ -228,7 +229,7 @@ header.scrolled {
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 1.25rem;
     list-style: none;
     align-items: center;
 }
@@ -258,6 +259,28 @@ header.scrolled {
     height: 2px;
     background: linear-gradient(90deg, var(--color-accent-indigo), var(--color-accent-gold));
     border-radius: 2px;
+}
+
+/* Navigation CTA Button style */
+.nav-links a.nav-cta {
+    background: linear-gradient(135deg, var(--color-accent-indigo), #1d4ed8);
+    color: #ffffff !important;
+    padding: 0.55rem 1.4rem !important;
+    border-radius: 9999px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    transition: var(--transition-smooth);
+    display: inline-block;
+}
+
+.nav-links a.nav-cta:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+    transform: translateY(-2px);
+}
+
+.nav-links a.nav-cta::after {
+    display: none !important; /* Hide active indicator for CTA */
 }
 
 /* Mobile Toggle */
@@ -1261,6 +1284,103 @@ header.scrolled {
     font-weight: 600;
 }
 
+
+/* ==========================================================================
+   PUBLIC ENGAGEMENT SECTION
+   ========================================================================== */
+#engagement {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.engagement-roles-container {
+    margin-bottom: 3rem;
+}
+
+.engagement-card {
+    padding: 2.5rem;
+    border-radius: 16px;
+    background: var(--color-bg-card);
+    border: 1px solid var(--glass-border);
+    transition: var(--transition-smooth);
+}
+
+.engagement-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(37, 99, 235, 0.12);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent-gold);
+    font-size: 1.75rem;
+}
+
+.engagement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.75rem;
+}
+
+.meeting-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+.meeting-card:hover {
+    border-color: var(--glass-border-hover);
+    box-shadow: var(--card-glow-shadow);
+    transform: translateY(-5px);
+}
+
+.meeting-img-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+    border-bottom: 1px solid var(--glass-border);
+    background: #0f172a;
+}
+
+.meeting-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.meeting-card:hover .meeting-img {
+    transform: scale(1.05);
+}
+
+.meeting-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.meeting-info h4 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-white);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+}
+
+.meeting-info p {
+    font-size: 0.9rem;
+    color: var(--color-text-body);
+    line-height: 1.5;
+}
+
 /* ==========================================================================
    CONTACT SECTION
    ========================================================================== */
@@ -1736,7 +1856,7 @@ footer {
 }
 
 
-@media (max-width: 1024px) {
+@media (max-width: 1150px) {
     .desktop-only-graphic {
         display: none !important;
     }
