@@ -624,4 +624,127 @@ document.addEventListener('DOMContentLoaded', () => {
         showTestimonial(0);
         startTestimonialAuto();
     }
+
+    // 9. Universal 3D Interactive Touch & Mouse Tilt Effect for All Images
+    function init3DImageEffects() {
+        const imageContainers = document.querySelectorAll(
+            '.hero-graphic, .about-img-box, .gallery-card, .pillar-card, .practice-card, .biz-card, .testimonial-slide, .hero-avatar'
+        );
+
+        imageContainers.forEach(container => {
+            if (container.dataset.tilt3dInit) return;
+            container.dataset.tilt3dInit = "true";
+
+            container.classList.add('tilt-3d-container');
+
+            const isMainPortrait = container.classList.contains('hero-graphic') || container.classList.contains('about-img-box') || container.classList.contains('hero-avatar');
+
+            let glare = container.querySelector('.tilt-3d-glare');
+            if (!glare) {
+                glare = document.createElement('div');
+                glare.className = 'tilt-3d-glare';
+                container.appendChild(glare);
+            }
+
+            const img = container.querySelector('img');
+            const bgGlow = container.querySelector('.graphic-bg-glow');
+            const glassCard = container.querySelector('.glass-card');
+
+            function handleMove(e) {
+                const rect = container.getBoundingClientRect();
+                const clientX = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : e.clientX;
+                const clientY = (e.touches && e.touches.length > 0) ? e.touches[0].clientY : e.clientY;
+
+                if (!clientX || !clientY) return;
+
+                const x = clientX - rect.left;
+                const y = clientY - rect.top;
+
+                if (x < -20 || x > rect.width + 20 || y < -20 || y > rect.height + 20) {
+                    handleEnd();
+                    return;
+                }
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const percentX = (x - centerX) / centerX;
+                const percentY = (y - centerY) / centerY;
+
+                // Extra strong tilt angle for main hero & about portraits
+                const maxTilt = isMainPortrait ? 30 : 18;
+                const rotateX = (-percentY * maxTilt).toFixed(2);
+                const rotateY = (percentX * maxTilt).toFixed(2);
+
+                const scaleVal = isMainPortrait ? 1.08 : 1.05;
+                const zVal = isMainPortrait ? 25 : 15;
+
+                container.style.transition = 'transform 0.1s ease-out, box-shadow 0.2s ease-out';
+                container.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scaleVal}, ${scaleVal}, ${scaleVal}) translateZ(${zVal}px)`;
+                container.classList.add('tilt-3d-active');
+
+                // 3D Z-Pop layer for the actual photo
+                if (img) {
+                    const imgZ = isMainPortrait ? 60 : 30;
+                    img.style.transition = 'transform 0.1s ease-out, border-color 0.2s ease';
+                    img.style.transform = `translateZ(${imgZ}px) scale(1.04)`;
+                    if (isMainPortrait) {
+                        img.style.borderColor = 'var(--color-accent-gold)';
+                    }
+                }
+
+                if (glassCard) {
+                    glassCard.style.transition = 'transform 0.1s ease-out';
+                    glassCard.style.transform = 'translateZ(40px)';
+                }
+
+                // Reverse 3D Parallax for ambient background glow
+                if (bgGlow) {
+                    const glowX = (-percentX * 25).toFixed(2);
+                    const glowY = (-percentY * 25).toFixed(2);
+                    bgGlow.style.transform = `translate(${glowX}px, ${glowY}px) scale(1.25)`;
+                }
+
+                glare.style.opacity = '1';
+                const glareIntensity = isMainPortrait ? 0.6 : 0.45;
+                glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, ${glareIntensity}) 0%, rgba(56, 189, 248, 0.2) 40%, transparent 80%)`;
+            }
+
+            function handleEnd() {
+                container.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease';
+                container.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateZ(0px)';
+                container.classList.remove('tilt-3d-active');
+
+                if (img) {
+                    img.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                    img.style.transform = 'translateZ(0px) scale(1)';
+                }
+
+                if (glassCard) {
+                    glassCard.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                    glassCard.style.transform = 'translateZ(0px)';
+                }
+
+                if (bgGlow) {
+                    bgGlow.style.transform = 'translate(0px, 0px) scale(1)';
+                }
+
+                glare.style.opacity = '0';
+            }
+
+            // Mouse Events
+            container.addEventListener('mousemove', handleMove);
+            container.addEventListener('mouseleave', handleEnd);
+
+            // Mobile Touch Events
+            container.addEventListener('touchstart', handleMove, { passive: true });
+            container.addEventListener('touchmove', handleMove, { passive: true });
+            container.addEventListener('touchend', handleEnd);
+            container.addEventListener('touchcancel', handleEnd);
+        });
+    }
+
+    init3DImageEffects();
 });
+
+
