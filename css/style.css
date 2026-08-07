@@ -1536,20 +1536,20 @@ footer {
 }
 
 .testimonial-avatar-badge {
-    width: 64px;
-    height: 64px;
+    width: 84px;
+    height: 84px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    font-size: 1.35rem;
+    font-size: 1.6rem;
     color: #ffffff;
-    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25);
-    border: 2px solid rgba(37, 99, 235, 0.3);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.28);
+    border: 3px solid var(--color-accent-blue);
     background: #ffffff;
     overflow: hidden;
-    padding: 6px;
+    padding: 4px;
 }
 
 .testimonial-company-logo {
@@ -1557,10 +1557,12 @@ footer {
     height: 100%;
     object-fit: contain;
     border-radius: 50%;
+    transform: scale(1.15);
 }
 
 .testimonial-company-logo.author-photo {
     object-fit: cover;
+    transform: scale(1.05);
 }
 
 .avatar-legal  { background: linear-gradient(135deg, #1e3a8a, #2563eb); }
@@ -1976,9 +1978,10 @@ footer {
     }
 
     .testimonial-avatar-badge {
-        width: 54px !important;
-        height: 54px !important;
-        padding: 4px !important;
+        width: 72px !important;
+        height: 72px !important;
+        padding: 3px !important;
+        border-width: 2.5px !important;
     }
 
     .testimonial-author-info h4 {
