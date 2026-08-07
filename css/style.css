@@ -1967,34 +1967,60 @@ footer {
         gap: 1rem;
     }
 
+    .testimonials-slider-container {
+        padding: 0 45px !important;
+    }
+
     .testimonial-card {
-        padding: 1.2rem 1rem !important;
-        border-radius: 16px !important;
+        padding: 1.2rem 0.25rem !important;
     }
 
     .testimonial-avatar-badge {
-        width: 40px !important;
-        height: 40px !important;
-        font-size: 1rem !important;
-    }
-
-    .testimonial-avatar-badge svg {
-        width: 18px !important;
-        height: 18px !important;
+        width: 54px !important;
+        height: 54px !important;
+        padding: 4px !important;
     }
 
     .testimonial-author-info h4 {
-        font-size: 1.05rem !important;
+        font-size: 1.15rem !important;
     }
 
     .testimonial-author-info span {
-        font-size: 0.78rem !important;
+        font-size: 0.82rem !important;
+        line-height: 1.4 !important;
+        display: block !important;
     }
 
     .testimonial-text {
-        font-size: 0.88rem !important;
-        margin-bottom: 1rem !important;
-        line-height: 1.55 !important;
+        font-size: 0.92rem !important;
+        margin-bottom: 1.2rem !important;
+        line-height: 1.6 !important;
+        padding: 0 5px !important;
+    }
+
+    .testimonial-footer {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.6rem !important;
+        padding-top: 0.85rem !important;
+        width: 100% !important;
+    }
+
+    .testimonial-tag {
+        font-size: 0.75rem !important;
+        padding: 0.3rem 0.75rem !important;
+        text-align: center !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .testimonial-location {
+        font-size: 0.8rem !important;
+        text-align: center !important;
     }
 
     .business-header {
