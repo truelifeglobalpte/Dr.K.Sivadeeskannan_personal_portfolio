@@ -1453,10 +1453,33 @@ footer {
 /* ==========================================================================
    TESTIMONIALS & ENDORSEMENTS
    ========================================================================== */
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.75rem;
+.testimonials-slider-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 10px;
+}
+
+.testimonials-slider-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%;
+}
+
+.testimonial-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+    opacity: 0.3;
+    scale: 0.96;
+    transition: opacity 0.5s ease, scale 0.5s ease;
+    box-sizing: border-box;
+    padding: 0 5px;
+}
+
+.testimonial-slide.active {
+    opacity: 1;
+    scale: 1;
 }
 
 .testimonial-card {
