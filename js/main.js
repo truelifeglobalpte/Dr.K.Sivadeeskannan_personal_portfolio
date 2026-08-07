@@ -1,35 +1,45 @@
+// Immediate Theme Initialization to avoid caching flash
+(function() {
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+})();
+
 // GSAP, Lenis, and Portfolio UI Controller
 document.addEventListener('DOMContentLoaded', () => {
     // 0. Theme Management (Light/Dark Mode)
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     
-    // Light Theme Primary default
-    let savedTheme = localStorage.getItem('portfolio-theme');
-    if (savedTheme === 'dark') {
-        document.documentElement.removeAttribute('data-theme');
-        if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
-    } else {
-        localStorage.setItem('portfolio-theme', 'light');
-        document.documentElement.setAttribute('data-theme', 'light');
-        if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('portfolio-theme', 'dark');
+            if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('portfolio-theme', 'light');
+            if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+        }
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
     }
 
+    // Refresh state on load
+    const currentActiveTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    applyTheme(currentActiveTheme);
+
     if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            if (currentTheme === 'light') {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('portfolio-theme', 'dark');
-                if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('portfolio-theme', 'light');
-                if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
-            }
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+        themeToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const nextTheme = isDark ? 'light' : 'dark';
+            applyTheme(nextTheme);
         });
     }
 

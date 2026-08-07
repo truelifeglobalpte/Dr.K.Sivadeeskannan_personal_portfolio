@@ -1085,25 +1085,33 @@ header.scrolled {
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
-    width: 46px;
-    height: 46px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    background: rgba(17, 19, 26, 0.9);
-    border: 1px solid var(--glass-border);
-    color: var(--color-text-white);
+    background: var(--color-bg-card);
+    border: 2px solid var(--color-accent-indigo);
+    color: var(--color-accent-indigo);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: var(--transition-fast);
     backdrop-filter: blur(12px);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+}
+
+.slider-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2.5px;
 }
 
 .slider-btn:hover {
     background: var(--color-accent-indigo);
-    border-color: var(--color-accent-gold);
+    border-color: var(--color-accent-indigo);
     color: #ffffff;
-    transform: translateY(-50%) scale(1.1);
+    transform: translateY(-50%) scale(1.12);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
 }
 
 .prev-btn { left: 5px; }
@@ -1487,6 +1495,7 @@ footer {
 .fsb-instagram { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
 .fsb-youtube   { background: #FF0000; }
 .fsb-x         { background: #000000; }
+.fsb-gmail     { background: #ea4335; }
 .fsb-linkedin  { background: #0A66C2; }
 
 /* On very small screens, move to bottom-right */
