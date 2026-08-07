@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="css/style.css?v=2.0">
 
     <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
 
     <!-- Organization/Person JSON-LD Schema -->
     <script type="application/ld+json">
@@ -130,6 +130,8 @@
         </div>
     </header>
 
+    <main>
+
     <!-- Hero Section -->
     <section id="home">
         <!-- Grid 3D Background with Particles (Only on first page) -->
@@ -145,7 +147,7 @@
                 <div class="hero-graphic mobile-only-graphic">
                     <div class="graphic-bg-glow"></div>
                     <img src="assets/images/frist_page.jpeg?v=1.3" alt="Dr. K. Sivadeeskannan Portrait"
-                        class="hero-avatar">
+                        class="hero-avatar" fetchpriority="high">
                 </div>
 
                 <h1 class="hero-name">Dr. K. <span>Sivadeeskannan</span></h1>
@@ -175,7 +177,7 @@
             <div class="hero-graphic desktop-only-graphic">
                 <div class="graphic-bg-glow"></div>
                 <img src="assets/images/frist_page.jpeg?v=1.3" alt="Dr. K. Sivadeeskannan Portrait"
-                    class="hero-avatar">
+                    class="hero-avatar" fetchpriority="high">
             </div>
         </div>
     </section>
@@ -237,7 +239,7 @@
             <div class="about-img-box animate-on-scroll">
                 <div class="glass-card" style="padding: 1rem;">
                     <img src="assets/images/sivadheeskannan.jpeg?v=1.2" alt="Dr. K. Sivadeeskannan Portrait"
-                        style="width:100%; height:auto; max-height:550px; border-radius:12px; object-fit:contain; display:block;">
+                        style="width:100%; height:auto; max-height:550px; border-radius:12px; object-fit:contain; display:block;" loading="lazy">
                 </div>
             </div>
             <div class="about-info animate-on-scroll">
@@ -329,7 +331,7 @@
                 </div>
             </div>
             <div class="credentials-panel animate-on-scroll">
-                <h4>Academic &amp; Bar Qualifications</h4>
+                <h3>Academic &amp; Bar Qualifications</h3>
                 <div class="credential-timeline">
                     <div class="credential-item">
                         <div class="credential-title">Advocate &amp; Legal Practitioner (Enrollment No: 7787/2024)</div>
@@ -504,14 +506,14 @@
                     <div class="glass-card gallery-card">
                         <div class="gallery-card-info">
                             <span class="gallery-card-badge"><i data-lucide="shield-check"></i> National Bar Enrollment</span>
-                            <h4>Bar Council of India Certificate</h4>
+                            <h3>Bar Council of India Certificate</h3>
                             <p>Official Legal Practitioner Registration Certificate issued by the Bar Council of India, affirming full legal standing and court advocate status.</p>
                             <button class="view-cert-btn" data-img="assets/images/Recognition & Certificates/Bar_council_inida_certificate.png" data-caption="Bar Council of India Registration Certificate">
                                 <i data-lucide="maximize-2"></i> View Certificate
                             </button>
                         </div>
                         <div class="gallery-card-img-wrapper" data-img="assets/images/Recognition & Certificates/Bar_council_inida_certificate.png" data-caption="Bar Council of India Registration Certificate">
-                            <img src="assets/images/Recognition & Certificates/Bar_council_inida_certificate.png" alt="Bar Council of India Certificate" class="gallery-card-img">
+                            <img src="assets/images/Recognition & Certificates/Bar_council_inida_certificate.png" alt="Bar Council of India Certificate" class="gallery-card-img" loading="lazy">
                             <div class="img-zoom-overlay"><i data-lucide="zoom-in"></i> Inspect Document</div>
                         </div>
                     </div>
@@ -522,14 +524,14 @@
                     <div class="glass-card gallery-card">
                         <div class="gallery-card-info">
                             <span class="gallery-card-badge"><i data-lucide="scale"></i> Bar Council Credentials</span>
-                            <h4>Bar Council Advocate Enrollment Certificate</h4>
+                            <h3>Bar Council Advocate Enrollment Certificate</h3>
                             <p>Enrolled Advocate under the Bar Council of Tamil Nadu &amp; Puducherry. Authorized practitioner across all Courts of Law in Tamil Nadu.</p>
                             <button class="view-cert-btn" data-img="assets/images/Recognition & Certificates/Bar_entrolment_advacate_certificate .jpeg" data-caption="Bar Council Advocate Enrollment Certificate">
                                 <i data-lucide="maximize-2"></i> View Document Details
                             </button>
                         </div>
                         <div class="gallery-card-img-wrapper" data-img="assets/images/Recognition & Certificates/Bar_entrolment_advacate_certificate .jpeg" data-caption="Bar Council Advocate Enrollment Certificate">
-                            <img src="assets/images/Recognition & Certificates/Bar_entrolment_advacate_certificate .jpeg" alt="Bar Council Advocate Enrollment Certificate" class="gallery-card-img">
+                            <img src="assets/images/Recognition & Certificates/Bar_entrolment_advacate_certificate .jpeg" alt="Bar Council Advocate Enrollment Certificate" class="gallery-card-img" loading="lazy">
                             <div class="img-zoom-overlay"><i data-lucide="zoom-in"></i> Inspect Document</div>
                         </div>
                     </div>
@@ -540,14 +542,14 @@
                     <div class="glass-card gallery-card">
                         <div class="gallery-card-info">
                             <span class="gallery-card-badge"><i data-lucide="book-open"></i> Academic Degree</span>
-                            <h4>BBA LLB (Hons.) Degree Certificate</h4>
+                            <h3>BBA LLB (Hons.) Degree Certificate</h3>
                             <p>Five-year integrated Law &amp; Business Management Honor degree from Bharath Institute of Higher Education and Research (BIHER), Chennai.</p>
                             <button class="view-cert-btn" data-img="assets/images/Recognition & Certificates/BBA LLB (Hons.)_degree_certificate.jpeg" data-caption="BBA LLB (Hons.) Degree Certificate - BIHER Chennai">
                                 <i data-lucide="maximize-2"></i> View Full Degree
                             </button>
                         </div>
                         <div class="gallery-card-img-wrapper" data-img="assets/images/Recognition & Certificates/BBA LLB (Hons.)_degree_certificate.jpeg" data-caption="BBA LLB (Hons.) Degree Certificate - BIHER Chennai">
-                            <img src="assets/images/Recognition & Certificates/BBA LLB (Hons.)_degree_certificate.jpeg" alt="BBA LLB (Hons.) Degree Certificate" class="gallery-card-img">
+                            <img src="assets/images/Recognition & Certificates/BBA LLB (Hons.)_degree_certificate.jpeg" alt="BBA LLB (Hons.) Degree Certificate" class="gallery-card-img" loading="lazy">
                             <div class="img-zoom-overlay"><i data-lucide="zoom-in"></i> Inspect Document</div>
                         </div>
                     </div>
@@ -558,14 +560,14 @@
                     <div class="glass-card gallery-card">
                         <div class="gallery-card-info">
                             <span class="gallery-card-badge"><i data-lucide="graduation-cap"></i> Graduation Qualification</span>
-                            <h4>Bachelor of Business Administration &amp; Law</h4>
+                            <h3>Bachelor of Business Administration &amp; Law</h3>
                             <p>Academic qualification demonstrating mastery in Corporate Governance, Contractual Law, HR Management, and Judicial Procedure.</p>
                             <button class="view-cert-btn" data-img="assets/images/Recognition & Certificates/degree_certificate.png" data-caption="Bachelor of Business Administration & Law Degree Certificate">
                                 <i data-lucide="maximize-2"></i> View Certificate
                             </button>
                         </div>
                         <div class="gallery-card-img-wrapper" data-img="assets/images/Recognition & Certificates/degree_certificate.png" data-caption="Bachelor of Business Administration & Law Degree Certificate">
-                            <img src="assets/images/Recognition & Certificates/degree_certificate.png" alt="Degree Certificate" class="gallery-card-img">
+                            <img src="assets/images/Recognition & Certificates/degree_certificate.png" alt="Degree Certificate" class="gallery-card-img" loading="lazy">
                             <div class="img-zoom-overlay"><i data-lucide="zoom-in"></i> Inspect Document</div>
                         </div>
                     </div>
@@ -576,14 +578,14 @@
                     <div class="glass-card gallery-card">
                         <div class="gallery-card-info">
                             <span class="gallery-card-badge"><i data-lucide="medal"></i> Honorary Doctorate</span>
-                            <h4>Honorary Doctorate Conferred Certificate</h4>
+                            <h3>Honorary Doctorate Conferred Certificate</h3>
                             <p>Honorary Doctorate in Social Services conferred in recognition of outstanding humanitarian contribution, COVID-19 pandemic relief, and civic leadership.</p>
                             <button class="view-cert-btn" data-img="assets/images/Recognition & Certificates/Honorary Doctorate_full.jpeg" data-caption="Honorary Doctorate Conferred Certificate (Social Services & Public Welfare)">
                                 <i data-lucide="maximize-2"></i> View Full Citation
                             </button>
                         </div>
                         <div class="gallery-card-img-wrapper" data-img="assets/images/Recognition & Certificates/Honorary Doctorate_full.jpeg" data-caption="Honorary Doctorate Conferred Certificate (Social Services & Public Welfare)">
-                            <img src="assets/images/Recognition & Certificates/Honorary Doctorate_full.jpeg" alt="Honorary Doctorate Conferred Certificate" class="gallery-card-img">
+                            <img src="assets/images/Recognition & Certificates/Honorary Doctorate_full.jpeg" alt="Honorary Doctorate Conferred Certificate" class="gallery-card-img" loading="lazy">
                             <div class="img-zoom-overlay"><i data-lucide="zoom-in"></i> Inspect Document</div>
                         </div>
                     </div>
@@ -594,14 +596,14 @@
                     <div class="glass-card gallery-card">
                         <div class="gallery-card-info">
                             <span class="gallery-card-badge"><i data-lucide="award"></i> Award Conferment</span>
-                            <h4>Honorary Doctorate Award Ceremony</h4>
+                            <h3>Honorary Doctorate Award Ceremony</h3>
                             <p>Conferment ceremony presenting the Doctor of Social Services title for dedicated community upliftment and public welfare initiatives.</p>
                             <button class="view-cert-btn" data-img="assets/images/Recognition & Certificates/Honorary Doctorate.jpeg" data-caption="Honorary Doctorate Award Presentation Ceremony">
                                 <i data-lucide="maximize-2"></i> View Award Photo
                             </button>
                         </div>
                         <div class="gallery-card-img-wrapper" data-img="assets/images/Recognition & Certificates/Honorary Doctorate.jpeg" data-caption="Honorary Doctorate Award Presentation Ceremony">
-                            <img src="assets/images/Recognition & Certificates/Honorary Doctorate.jpeg" alt="Honorary Doctorate Award Ceremony" class="gallery-card-img">
+                            <img src="assets/images/Recognition & Certificates/Honorary Doctorate.jpeg" alt="Honorary Doctorate Award Ceremony" class="gallery-card-img" loading="lazy">
                             <div class="img-zoom-overlay"><i data-lucide="zoom-in"></i> Inspect Image</div>
                         </div>
                     </div>
@@ -612,14 +614,14 @@
                     <div class="glass-card gallery-card">
                         <div class="gallery-card-info">
                             <span class="gallery-card-badge"><i data-lucide="star"></i> Public Service Honor</span>
-                            <h4>Honorary Doctorate Distinction</h4>
+                            <h3>Honorary Doctorate Distinction</h3>
                             <p>Distinguished honor recognizing leadership in youth empowerment, legal aid awareness, and grassroots social welfare programs across Tamil Nadu.</p>
                             <button class="view-cert-btn" data-img="assets/images/Recognition & Certificates/Honorary Doctorate_2.jpeg" data-caption="Honorary Doctorate Distinction Award">
                                 <i data-lucide="maximize-2"></i> View Award Photo
                             </button>
                         </div>
                         <div class="gallery-card-img-wrapper" data-img="assets/images/Recognition & Certificates/Honorary Doctorate_2.jpeg" data-caption="Honorary Doctorate Distinction Award">
-                            <img src="assets/images/Recognition & Certificates/Honorary Doctorate_2.jpeg" alt="Honorary Doctorate Distinction" class="gallery-card-img">
+                            <img src="assets/images/Recognition & Certificates/Honorary Doctorate_2.jpeg" alt="Honorary Doctorate Distinction" class="gallery-card-img" loading="lazy">
                             <div class="img-zoom-overlay"><i data-lucide="zoom-in"></i> Inspect Image</div>
                         </div>
                     </div>
@@ -630,14 +632,14 @@
                     <div class="glass-card gallery-card">
                         <div class="gallery-card-info">
                             <span class="gallery-card-badge"><i data-lucide="landmark"></i> State Leadership</span>
-                            <h4>Hon'ble Chief Minister of Tamil Nadu</h4>
+                            <h3>Hon'ble Chief Minister of Tamil Nadu</h3>
                             <p>High-level representation and strategic discussion with the Hon'ble Chief Minister of Tamil Nadu regarding state welfare, youth employment, and regional development initiatives in Sivagangai.</p>
                             <button class="view-cert-btn" data-img="assets/images/political/Hon'ble Chief Minister of Tamil Nadu.jpg" data-caption="High-level Meeting with Hon'ble Chief Minister of Tamil Nadu">
                                 <i data-lucide="maximize-2"></i> View Meeting Photo
                             </button>
                         </div>
                         <div class="gallery-card-img-wrapper" data-img="assets/images/political/Hon'ble Chief Minister of Tamil Nadu.jpg" data-caption="High-level Meeting with Hon'ble Chief Minister of Tamil Nadu">
-                            <img src="assets/images/political/Hon'ble Chief Minister of Tamil Nadu.jpg" alt="Hon'ble Chief Minister of Tamil Nadu" class="gallery-card-img">
+                            <img src="assets/images/political/Hon'ble Chief Minister of Tamil Nadu.jpg" alt="Hon'ble Chief Minister of Tamil Nadu" class="gallery-card-img" loading="lazy">
                             <div class="img-zoom-overlay"><i data-lucide="zoom-in"></i> Inspect Image</div>
                         </div>
                     </div>
@@ -648,14 +650,14 @@
                     <div class="glass-card gallery-card">
                         <div class="gallery-card-info">
                             <span class="gallery-card-badge"><i data-lucide="building-2"></i> Ministerial Engagement</span>
-                            <h4>Minister for Revenue &amp; Disaster Management</h4>
+                            <h3>Minister for Revenue &amp; Disaster Management</h3>
                             <p>Engaging dialogue with the Minister for Revenue &amp; Disaster Management (Leader of the House, TN Legislative Assembly) on administrative reforms and community relief programs.</p>
                             <button class="view-cert-btn" data-img="assets/images/political/Minister for Revenue and Disaster Management and Leader of the House in the Tamil Nadu government.jpg" data-caption="Discussion with Minister for Revenue & Disaster Management (Leader of the House)">
                                 <i data-lucide="maximize-2"></i> View Meeting Photo
                             </button>
                         </div>
                         <div class="gallery-card-img-wrapper" data-img="assets/images/political/Minister for Revenue and Disaster Management and Leader of the House in the Tamil Nadu government.jpg" data-caption="Discussion with Minister for Revenue & Disaster Management (Leader of the House)">
-                            <img src="assets/images/political/Minister for Revenue and Disaster Management and Leader of the House in the Tamil Nadu government.jpg" alt="Minister for Revenue and Disaster Management" class="gallery-card-img">
+                            <img src="assets/images/political/Minister for Revenue and Disaster Management and Leader of the House in the Tamil Nadu government.jpg" alt="Minister for Revenue and Disaster Management" class="gallery-card-img" loading="lazy">
                             <div class="img-zoom-overlay"><i data-lucide="zoom-in"></i> Inspect Image</div>
                         </div>
                     </div>
@@ -666,14 +668,14 @@
                     <div class="glass-card gallery-card">
                         <div class="gallery-card-info">
                             <span class="gallery-card-badge"><i data-lucide="trophy"></i> Youth &amp; Sports Affairs</span>
-                            <h4>Minister for Public Works &amp; Sports Development</h4>
+                            <h3>Minister for Public Works &amp; Sports Development</h3>
                             <p>Deliberation with the Minister for Public Works &amp; Sports Development on expanding youth sports infrastructure, regional sports facilities, and building projects.</p>
                             <button class="view-cert-btn" data-img="assets/images/political/Minister for Public Works and Sports Development in Tamil Nadu.jpg" data-caption="Consultation with Minister for Public Works & Sports Development">
                                 <i data-lucide="maximize-2"></i> View Meeting Photo
                             </button>
                         </div>
                         <div class="gallery-card-img-wrapper" data-img="assets/images/political/Minister for Public Works and Sports Development in Tamil Nadu.jpg" data-caption="Consultation with Minister for Public Works & Sports Development">
-                            <img src="assets/images/political/Minister for Public Works and Sports Development in Tamil Nadu.jpg" alt="Minister for Public Works and Sports Development" class="gallery-card-img">
+                            <img src="assets/images/political/Minister for Public Works and Sports Development in Tamil Nadu.jpg" alt="Minister for Public Works and Sports Development" class="gallery-card-img" loading="lazy">
                             <div class="img-zoom-overlay"><i data-lucide="zoom-in"></i> Inspect Image</div>
                         </div>
                     </div>
@@ -684,14 +686,14 @@
                     <div class="glass-card gallery-card">
                         <div class="gallery-card-info">
                             <span class="gallery-card-badge"><i data-lucide="trees"></i> Environmental Governance</span>
-                            <h4>Minister for Natural Resources</h4>
+                            <h3>Minister for Natural Resources</h3>
                             <p>Strategic consultation regarding environmental protection, natural resource management, and policy execution across districts in Tamil Nadu.</p>
                             <button class="view-cert-btn" data-img="assets/images/political/Minister for Natural Resources in Tamil Nadu.png" data-caption="Policy Consultation with Minister for Natural Resources">
                                 <i data-lucide="maximize-2"></i> View Meeting Photo
                             </button>
                         </div>
                         <div class="gallery-card-img-wrapper" data-img="assets/images/political/Minister for Natural Resources in Tamil Nadu.png" data-caption="Policy Consultation with Minister for Natural Resources">
-                            <img src="assets/images/political/Minister for Natural Resources in Tamil Nadu.png" alt="Minister for Natural Resources" class="gallery-card-img">
+                            <img src="assets/images/political/Minister for Natural Resources in Tamil Nadu.png" alt="Minister for Natural Resources" class="gallery-card-img" loading="lazy">
                             <div class="img-zoom-overlay"><i data-lucide="zoom-in"></i> Inspect Image</div>
                         </div>
                     </div>
@@ -720,10 +722,10 @@
                     <div class="testimonial-card">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar-badge avatar-biz">
-                                <img src="assets/images/testimonials/shajan_export.png" alt="Shajan Export Import Logo" class="testimonial-company-logo">
+                                <img src="assets/images/testimonials/shajan_export.png" alt="Shajan Export Import Logo" class="testimonial-company-logo" loading="lazy">
                             </div>
                             <div class="testimonial-author-info">
-                                <h4>Shajan Export Import</h4>
+                                <h3>Shajan Export Import</h3>
                                 <span>Global Logistics &amp; Export Solutions &bull; info@shajanexportimport.com</span>
                             </div>
                         </div>
@@ -745,10 +747,10 @@
                     <div class="testimonial-card">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar-badge avatar-legal">
-                                <img src="assets/images/testimonials/zenura_realty.png" alt="Zenura Realty Logo" class="testimonial-company-logo">
+                                <img src="assets/images/testimonials/zenura_realty.png" alt="Zenura Realty Logo" class="testimonial-company-logo" loading="lazy">
                             </div>
                             <div class="testimonial-author-info">
-                                <h4>Zenura Realty</h4>
+                                <h3>Zenura Realty</h3>
                                 <span>DTCP &amp; RERA Real Estate Developers &bull; zenurarealty.in</span>
                             </div>
                         </div>
@@ -770,10 +772,10 @@
                     <div class="testimonial-card">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar-badge avatar-social">
-                                <img src="assets/images/testimonials/shajan_eco.png" alt="Shajan Eco Logo" class="testimonial-company-logo">
+                                <img src="assets/images/testimonials/shajan_eco.png" alt="Shajan Eco Logo" class="testimonial-company-logo" loading="lazy">
                             </div>
                             <div class="testimonial-author-info">
-                                <h4>Shajan Eco</h4>
+                                <h3>Shajan Eco</h3>
                                 <span>Global Coco Peat &amp; Coir Pith Exporter &bull; info@shajaneco.com</span>
                             </div>
                         </div>
@@ -795,10 +797,10 @@
                     <div class="testimonial-card">
                         <div class="testimonial-header">
                             <div class="testimonial-avatar-badge avatar-edu">
-                                <img src="assets/images/testimonials/rajapandi.jpg" alt="Rajapandi B Photo" class="testimonial-company-logo author-photo">
+                                <img src="assets/images/testimonials/rajapandi.jpg" alt="Rajapandi B Photo" class="testimonial-company-logo author-photo" loading="lazy">
                             </div>
                             <div class="testimonial-author-info">
-                                <h4>Rajapandi B</h4>
+                                <h3>Rajapandi B</h3>
                                 <span>AI Engineer &amp; Tech Entrepreneur &bull; rajapandi2618@gmail.com</span>
                             </div>
                         </div>
@@ -823,7 +825,7 @@
                                 <i data-lucide="globe-2"></i>
                             </div>
                             <div class="testimonial-author-info">
-                                <h4>Marcus Vance</h4>
+                                <h3>Marcus Vance</h3>
                                 <span>Senior Director &bull; Asia-Pacific Trade &amp; Investment Desk</span>
                             </div>
                         </div>
@@ -916,6 +918,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <!-- Footer -->
     <footer>

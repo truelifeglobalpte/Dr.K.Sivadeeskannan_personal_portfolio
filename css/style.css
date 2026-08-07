@@ -760,7 +760,7 @@ header.scrolled {
     padding: 2rem;
 }
 
-.credentials-panel h4 {
+.credentials-panel h3 {
     font-family: var(--font-heading);
     font-size: 1.35rem;
     font-weight: 700;
@@ -1016,7 +1016,7 @@ header.scrolled {
     margin-bottom: 1.25rem;
 }
 
-.gallery-card-info h4 {
+.gallery-card-info h3 {
     font-family: var(--font-heading);
     font-size: 1.6rem;
     font-weight: 700;
@@ -1694,7 +1694,7 @@ footer {
     text-align: center;
 }
 
-.testimonial-author-info h4 {
+.testimonial-author-info h3 {
     font-family: var(--font-heading);
     font-size: 1.3rem;
     font-weight: 700;
@@ -2041,7 +2041,7 @@ footer {
         margin-bottom: 0.65rem !important;
     }
 
-    .gallery-card-info h4 {
+    .gallery-card-info h3 {
         font-size: 1.25rem !important;
         line-height: 1.25 !important;
         margin-bottom: 0.5rem !important;
@@ -2104,7 +2104,7 @@ footer {
         border-width: 2.5px !important;
     }
 
-    .testimonial-author-info h4 {
+    .testimonial-author-info h3 {
         font-size: 1.15rem !important;
     }
 
