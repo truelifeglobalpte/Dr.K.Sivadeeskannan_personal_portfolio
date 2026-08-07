@@ -671,13 +671,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const percentX = (x - centerX) / centerX;
                 const percentY = (y - centerY) / centerY;
 
-                // Extra strong tilt angle for main hero & about portraits
-                const maxTilt = isMainPortrait ? 30 : 18;
+                // Extra strong tilt angle for main hero & about portraits - made much gentler/subtle
+                const maxTilt = isMainPortrait ? 12 : 8;
                 const rotateX = (-percentY * maxTilt).toFixed(2);
                 const rotateY = (percentX * maxTilt).toFixed(2);
 
-                const scaleVal = isMainPortrait ? 1.08 : 1.05;
-                const zVal = isMainPortrait ? 25 : 15;
+                const scaleVal = isMainPortrait ? 1.03 : 1.02;
+                const zVal = isMainPortrait ? 10 : 6;
 
                 container.style.transition = 'transform 0.1s ease-out, box-shadow 0.2s ease-out';
                 container.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${scaleVal}, ${scaleVal}, ${scaleVal}) translateZ(${zVal}px)`;
@@ -685,9 +685,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // 3D Z-Pop layer for the actual photo
                 if (img) {
-                    const imgZ = isMainPortrait ? 60 : 30;
+                    const imgZ = isMainPortrait ? 20 : 10;
                     img.style.transition = 'transform 0.1s ease-out, border-color 0.2s ease';
-                    img.style.transform = `translateZ(${imgZ}px) scale(1.04)`;
+                    img.style.transform = `translateZ(${imgZ}px) scale(1.02)`;
                     if (isMainPortrait) {
                         img.style.borderColor = 'var(--color-accent-gold)';
                     }
@@ -695,19 +695,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (glassCard) {
                     glassCard.style.transition = 'transform 0.1s ease-out';
-                    glassCard.style.transform = 'translateZ(40px)';
+                    glassCard.style.transform = 'translateZ(15px)';
                 }
 
                 // Reverse 3D Parallax for ambient background glow
                 if (bgGlow) {
-                    const glowX = (-percentX * 25).toFixed(2);
-                    const glowY = (-percentY * 25).toFixed(2);
-                    bgGlow.style.transform = `translate(${glowX}px, ${glowY}px) scale(1.25)`;
+                    const glowX = (-percentX * 10).toFixed(2);
+                    const glowY = (-percentY * 10).toFixed(2);
+                    bgGlow.style.transform = `translate(${glowX}px, ${glowY}px) scale(1.1)`;
                 }
 
                 glare.style.opacity = '1';
-                const glareIntensity = isMainPortrait ? 0.6 : 0.45;
-                glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, ${glareIntensity}) 0%, rgba(56, 189, 248, 0.2) 40%, transparent 80%)`;
+                const glareIntensity = isMainPortrait ? 0.35 : 0.25;
+                glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, ${glareIntensity}) 0%, rgba(56, 189, 248, 0.1) 40%, transparent 80%)`;
             }
 
             function handleEnd() {
