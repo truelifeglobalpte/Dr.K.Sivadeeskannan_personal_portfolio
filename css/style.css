@@ -1710,13 +1710,41 @@ footer {
     .timeline-card,
     .gallery-card {
         grid-template-columns: 1fr;
-        padding: 1.25rem 1rem;
-        gap: 1rem;
+        padding: 1.1rem 0.9rem !important;
+        gap: 0.85rem !important;
+        border-radius: 16px !important;
+    }
+
+    .gallery-card-badge {
+        font-size: 0.72rem !important;
+        padding: 0.25rem 0.7rem !important;
+        margin-bottom: 0.65rem !important;
+    }
+
+    .gallery-card-info h4 {
+        font-size: 1.25rem !important;
+        line-height: 1.25 !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .gallery-card-info p {
+        font-size: 0.88rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .view-cert-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 0.65rem 1rem !important;
+        font-size: 0.85rem !important;
+        margin-bottom: 0.5rem !important;
     }
 
     .timeline-img,
     .gallery-card-img {
-        height: 200px;
+        height: 190px !important;
+        padding: 0.4rem !important;
     }
 
     .practice-card {
