@@ -659,6 +659,28 @@ header.scrolled {
     align-items: center;
 }
 
+.about-img-box {
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.about-img-box img {
+    width: 100%;
+    height: auto;
+    max-height: 440px;
+    border-radius: 16px;
+    display: block;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--card-shadow);
+}
+
+@media (max-width: 768px) {
+    .hero-avatar {
+        max-width: 250px !important;
+        border-radius: 30px !important; /* Edge shape curved/cove */
+    }
+}
+
 .about-info h3 {
     font-family: var(--font-heading);
     font-size: 1.8rem;

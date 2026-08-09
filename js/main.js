@@ -673,8 +673,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const isMobile = window.innerWidth <= 768;
 
-                // Extra strong tilt angle for main hero & about portraits - made extremely subtle
-                const maxTilt = isMainPortrait ? (isMobile ? 8 : 6) : (isMobile ? 6 : 4);
+                // Extra strong tilt angle for main hero & about portraits - made extremely subtle on mobile
+                const maxTilt = isMainPortrait ? (isMobile ? 2.5 : 6) : (isMobile ? 2 : 4);
                 const rotateX = (-percentY * maxTilt).toFixed(2);
                 const rotateY = (percentX * maxTilt).toFixed(2);
 
@@ -696,8 +696,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     img.style.transition = 'transform 0.1s ease-out, border-color 0.2s ease';
                     if (isMobile) {
                         // Apply tilt rotation directly to the image itself on mobile screens
-                        // For the main hero avatar, keep the scale to 1.18 to prevent white margins from showing.
-                        const scale = isMainPortrait ? 1.18 : 1.02;
+                        // Remove scale/zoom effect completely on touch (scale 1.0)
+                        let scale = 1.0;
                         img.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
                     } else {
                         const imgZ = isMainPortrait ? 8 : 5;
@@ -739,12 +739,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (img) {
                     img.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-                    if (isMobile && isMainPortrait) {
-                        // Restore base scale on mobile to keep white borders cropped out
-                        img.style.transform = 'scale(1.15)';
-                    } else {
-                        img.style.transform = 'none';
-                    }
+                    img.style.transform = 'none';
                 }
 
                 if (glassCard) {
