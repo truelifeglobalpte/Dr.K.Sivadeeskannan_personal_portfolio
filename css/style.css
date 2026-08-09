@@ -167,6 +167,7 @@ section {
     color: inherit;
     background: none;
     -webkit-background-clip: initial;
+    background-clip: initial;
     -webkit-text-fill-color: initial;
 }
 
@@ -407,6 +408,7 @@ header.scrolled {
 .hero-name span {
     background: var(--color-hero-span-gradient);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
