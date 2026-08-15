@@ -2,17 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://dr-k-sivadeeskannan-personal-portfo.vercel.app/</loc>
-    <lastmod>2026-08-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://dr-k-sivadeeskannan-personal-portfo.vercel.app/assets/images/first_page.jpeg</image:loc>
-      <image:title>Dr. K. Sivadeeskannan - Best Advocate in Sivagangai &amp; Top Advocate in Chennai</image:title>
-      <image:caption>Official portrait of Advocate Dr. K. Sivadeeskannan (Sivadeeskannan / Sivadeeshkannan / Sivadheeskannan)</image:caption>
-    </image:image>
-  </url>
-  <url>
     <loc>https://www.sivadeeskannan.co.in/</loc>
     <lastmod>2026-08-15</lastmod>
     <changefreq>daily</changefreq>
