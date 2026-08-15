@@ -2396,6 +2396,36 @@ a, button {
     transform: translateY(0);
 }
 
+/* ==========================================================================
+   FAQ SECTION ACCORDION STYLES
+   ========================================================================== */
+.faq-card {
+    transition: var(--transition-smooth);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+}
+
+.faq-card summary::-webkit-details-marker,
+.faq-card summary::marker {
+    display: none;
+}
+
+.faq-card[open] summary svg,
+.faq-card[open] summary i {
+    transform: rotate(180deg);
+    color: var(--color-accent-gold);
+}
+
+.faq-card summary:hover {
+    color: var(--color-accent-gold) !important;
+}
+
+.faq-card summary:hover svg,
+.faq-card summary:hover i {
+    color: var(--color-accent-gold);
+}
+
+
 
 
 
